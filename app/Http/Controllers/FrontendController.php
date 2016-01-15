@@ -66,4 +66,12 @@ class FrontendController extends Controller
         return view($this->folder . '.detail_newsletter', $data);
     }
 
+    /*
+    ** Go To System
+    */
+
+    public function postGoLogin(){
+        
+    }
+
 }
