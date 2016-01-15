@@ -32,7 +32,8 @@ Route::group(['middleware' => ['web']], function () {
 	Route::group(['middleware' => ['auth']], function () {    
     	Route::controller('/home', 'HomeController');
     	Route::controller('/users', 'UsersController');
-    	Route::controller('/groups', 'GroupsController');
+        Route::controller('/groups', 'GroupsController');
+    	Route::controller('/partners', 'PartnersController');
 
     	/*
 		** Front End Dashboard Route
