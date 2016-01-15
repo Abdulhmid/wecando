@@ -9,7 +9,7 @@
                     <span class="icon-bar"></span>
                 </button>
 
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="{!! url('/') !!}">
                     <h1><img src="{!! asset('additional/home/images/logo.png') !!}" alt="logo"></h1>
                 </a>
                 
@@ -29,10 +29,10 @@
                             <li><a href="coming-soon.html">Coming Soon</a></li>
                         </ul>
                     </li>  -->                                        
-                    <li><a href="{!! url('/') !!}">Newsletter</a></li>                    
-                    <li><a href="{!! url('/') !!}">Campaign</a></li>                    
-                    <li><a href="{!! url('/') !!}">Donasi</a></li>                    
-                    <li><a href="{!! url('/') !!}">Masuk</a></li>                    
+                    <li><a href="{!! url('/newsletter') !!}">Newsletter</a></li>                    
+                    <li><a href="{!! url('/campaign') !!}">Campaign</a></li>                    
+                    <li><a href="{!! url('/donate') !!}">Donasi</a></li>                    
+                    <li><a href="{!! url('/go') !!}">Masuk</a></li>                    
                 </ul>
             </div>
             <div class="search">
