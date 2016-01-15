@@ -17,6 +17,7 @@ class HomeController extends Controller
     public function __construct(Md\Users $model)
     {
         $this->model = $model;
+        $this->middleware('auth');
     }
 
     public function getIndex()

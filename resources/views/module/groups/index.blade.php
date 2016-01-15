@@ -1,4 +1,4 @@
-@extends('main')
+@extends('backend')
 
 @section('style')
 <link href="{!! asset('plugins/datatables/dataTables.bootstrap.css') !!} "rel="stylesheet" type="text/css"/>    
@@ -17,7 +17,7 @@
 					</div>
 					<div class="col-xs-6">
 						<div class="pull-right">
-							<a href="{!! url(GLobalHelp::indexUrl().'/create') !!}" data-original-title="Add" data-toggle="tooltip" class="btn btn-primary">
+							<a href="{!! url(GLobalHelper::indexUrl().'/create') !!}" data-original-title="Add" data-toggle="tooltip" class="btn btn-primary">
 								<i class="fa fa-plus"></i> Tambah
 							</a>
 						</div>
@@ -26,11 +26,11 @@
 			</div><!-- /.box-header -->
 			<div class="box-body">
                 @if(Session::has('erroracl'))
-                {!! GlobalHelp::messages(Session::get('erroracl'), true) !!}
+                {!! GlobalHelper::messages(Session::get('erroracl'), true) !!}
                 @endif
 
 				@if(Session::has('error'))
-				{!! GlobalHelp::messages(Session::get('error'), true) !!}
+				{!! GlobalHelper::messages(Session::get('error'), true) !!}
 				@endif
 				<table id="datatable" class="table table-bordered table-hover">
 					<thead>
@@ -76,7 +76,7 @@
 			"bDestroy": true,
 			"serverSide": true,
 	        "ajax": {
-	            "url": "{!! url(GLobalHelp::indexUrl().'/data') !!}",
+	            "url": "{!! url(GLobalHelper::indexUrl().'/data') !!}",
 			    error: function (xhr, error, thrown) {
 			    	sweetAlert("Oops...", "Something went wrong!", "error");
 			    },

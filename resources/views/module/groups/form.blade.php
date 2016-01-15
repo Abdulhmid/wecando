@@ -1,4 +1,4 @@
-@extends('main')
+@extends('backend')
 
 @section('style')
 	<link href="{!! asset('plugins/sweet-alert/sweet-alert.css') !!} "rel="stylesheet" type="text/css"/>
@@ -17,7 +17,7 @@
 					</div>
 					<div class="col-xs-6">
 						<div class="pull-right">
-							<a href="{!! URL::to(GlobalHelp::indexUrl())!!}" class="btn btn-default"> 
+							<a href="{!! URL::to(GlobalHelper::indexUrl())!!}" class="btn btn-default"> 
 								<i class="fa fa-arrow-left"></i> Kembali 
 							</a>
 						</div>
@@ -26,7 +26,7 @@
 			</div>
 			<div class="box-body">
 				@if(Session::has('message'))
-				{!! GlobalHelp::messages(Session::get('message')) !!}
+				{!! GlobalHelper::messages(Session::get('message')) !!}
 				@endif
 
 				{{-- Form --}}

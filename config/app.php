@@ -211,6 +211,7 @@ return [
         'Datatables' => yajra\Datatables\Facades\Datatables::class,
         'FormBuilder' => Kris\LaravelFormBuilder\Facades\FormBuilder::class,
         'Image' => Intervention\Image\Facades\Image::class,
+        'Input' => Illuminate\Support\Facades\Input::class,
 
     ],
 

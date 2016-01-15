@@ -12,9 +12,8 @@ class Groups extends Model {
     protected $guarded = ['id'];
         
 	public function scopeTakeData(){
-		return self::select('id','group_name','group_description',
-							\DB::Raw('nlevel(path) as nlevel'),'created_by',
-							'created_at')->orderBy('path', 'asc');
+		return self::select('id','group_name','description','created_by',
+							'created_at')->orderBy('id', 'desc');
 	}
 
 }

@@ -26,11 +26,14 @@ Route::get('/', function () {
 |
 */
 
-Route::group(['middleware' => 'web'], function () {
+Route::group(['middleware' => ['web']], function () {
     Route::auth();
 
-    Route::controller('/home', 'HomeController');
-    Route::controller('/users', 'UsersController');
+	Route::group(['middleware' => ['auth']], function () {    
+    	Route::controller('/home', 'HomeController');
+    	Route::controller('/users', 'UsersController');
+    	Route::controller('/groups', 'GroupsController');
+	});
 });
 
 Route::controller('/','FrontendController');
