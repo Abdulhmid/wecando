@@ -61,6 +61,14 @@
                 </a>
             </li>
 
+            <li class="header">Setting</li>
+            <li class="{!! $segment == 'users'  ? 'active' : '' !!}">
+                <a href="{!! url('/users') !!}">
+                    <i class="fa fa-bar-chart"></i>
+                    <span>Setting Website</span>
+                </a>
+            </li>
+
             <div style="display:none">
             <li class="header">Setting</li>
             <li class="treeview {!! $segment == 'reports' ? 'active' : '' !!}">

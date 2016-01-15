@@ -16,23 +16,23 @@
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><a href="{!! url('/') !!}">Home</a></li>
-                    <!--<li class="dropdown"><a href="#">Pages <i class="fa fa-angle-down"></i></a>
-                        <ul role="menu" class="sub-menu">
-                            <li><a href="aboutus.html">About</a></li>
-                            <li><a href="aboutus2.html">About 2</a></li>
-                            <li><a href="service.html">Services</a></li>
-                            <li><a href="pricing.html">Pricing</a></li>
-                            <li><a href="contact.html">Contact us</a></li>
-                            <li><a href="contact2.html">Contact us 2</a></li>
-                            <li><a href="404.html">404 error</a></li>
-                            <li><a href="coming-soon.html">Coming Soon</a></li>
-                        </ul>
-                    </li>  -->                                        
+                    <li class="active"><a href="{!! url('/') !!}">Home</a></li>                                       
                     <li><a href="{!! url('/newsletter') !!}">Newsletter</a></li>                    
                     <li><a href="{!! url('/campaign') !!}">Campaign</a></li>                    
-                    <li><a href="{!! url('/donate') !!}">Donasi</a></li>                    
-                    <li><a href="{!! url('/go') !!}">Masuk</a></li>                    
+                    <li><a href="{!! url('/donate') !!}">Donasi</a></li>    
+
+                    @if(empty(session('member_session')))
+                        <li><a href="{!! url('/go') !!}">Login</a></li>    
+                        <li><a href="{!! url('/reg') !!}">Register</a></li>    
+                    @else
+                        <li class="dropdown">
+                            <a href="#"> Masuk </i></a>
+                            <ul role="menu" class="sub-menu">
+                                <li><a href="aboutus.html">Login</a></li>
+                                <li><a href="aboutus2.html">Register</a></li>
+                            </ul>
+                        </li>  
+                    @endif               
                 </ul>
             </div>
             <div class="search">
