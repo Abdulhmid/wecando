@@ -26,14 +26,34 @@
 			</div>
 			<div class="box-body">
 				<div class="row">
-					@if(Session::has('message'))
-					{!! GlobalHelper::messages(Session::get('message')) !!}
-					@endif
+				@if(Session::has('message'))
+				{!! GlobalHelper::messages(Session::get('message')) !!}
+				@endif
 
 					{{-- Form --}}
 					{!! form_start($form) !!}
 
-					{!! form_rest($form) !!}
+					<div class="col-md-8">
+                        {!! form_row($form->username, ['default_value' => isset($row) ? $row->username: '']) !!}
+                        {!! form_row($form->fullname, ['default_value' => isset($row) ? $row->fullname: '']) !!}
+                        {!! form_row($form->email, ['default_value' => isset($row) ? $row->email: '']) !!}
+                        {!! form_row($form->no_telp, ['default_value' => isset($row) ? $row->no_telp: '']) !!}
+                        {!! form_row($form->password,['default_value' => '']) !!}
+                        {!! form_row($form->password_confirmation) !!}
+                        {!! form_row($form->status) !!}
+                        {!! form_row($form->id_group) !!}
+					</div>
+					<div class="col-md-4">
+						{!! form_label($form->image) !!}
+						{!! form_widget($form->image, ['attr' => ['style' => 'display:none']]) !!}
+						<div class="text-danger">{!! $errors->first('image') !!}</div>
+
+						{!! form_row($form->upload) !!}
+						<br>
+						<p class="text-center">
+							<img id="preview_img" class="img img-thumbnail" style="margin-top: 25px; max-height:200px" src="{{ isset($row) && !empty($row->image) ? asset(GLobalHelper::checkImage($row->image)) : '' }}"  />
+						</p>
+					</div>
 				</div>
 				@include('partial.form_button') 
 			</div>

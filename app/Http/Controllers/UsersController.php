@@ -51,18 +51,17 @@ class UsersController extends Controller
         $input = $request->except('save_continue','password_confirmation');
         $result = '';
 
-        if( \Input::hasFile('photo'))
+        if( \Request::hasFile('image'))
             $photo  = (new \ImageUpload($input))->upload();
 
         if($id == "" ) :
-            $input['id'] = \Uuid::generate();
-            $input['photo'] = isset($photo) ? $photo : "" ;
+            $input['image'] = isset($photo) ? $photo : "" ;
             $input['password']      = bcrypt($input['password']);
             $query = $this->model->create($input);
             $result = $query->id;
         else :
-            if(\Input::hasFile('photo'))
-                $input['photo'] = isset($photo) ? $photo : "";
+            if(\Request::hasFile('image'))
+                $input['image'] = isset($photo) ? $photo : "";
             if(isset($input['password']) && $input['password'] != "")
                 $input['password'] = bcrypt($input['password']);
 
@@ -70,7 +69,7 @@ class UsersController extends Controller
             $result = $id;
         endif;
 
-        $save_continue = \Input::get('save_continue');
+        $save_continue = \Request::get('save_continue');
         $redirect = empty($save_continue)?$this->url:$this->url.'/edit/'.$result;
 
         return redirect($redirect)->with('message','Berhasil tambah data Pengguna!');

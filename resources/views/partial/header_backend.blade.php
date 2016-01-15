@@ -6,11 +6,7 @@
 
 <header class="main-header">
     <!-- Logo -->
-<<<<<<< HEAD
     <a href="{!! url('/home') !!}" class="logo">
-=======
-    <a href="{!! url('/admin') !!}" class="logo">
->>>>>>> 3b08840f596110cf508ad91fdee9094d1c13a796
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini"></span>
         <!-- logo for regular state and mobile devices -->
@@ -45,11 +41,8 @@
                           <!-- Menu Footer-->
                           <li class="user-footer">
                             <div class="pull-left">
-<<<<<<< HEAD
                               <a href="{!! url('home/profil') !!}" class="btn btn-default btn-flat">Profile</a>
-=======
                               <a href="{!! url('/profil') !!}" class="btn btn-default btn-flat">Profile</a>
->>>>>>> 3b08840f596110cf508ad91fdee9094d1c13a796
                             </div>
                             <div class="pull-right">
                               <a href="{!! url('logout') !!}" class="btn btn-default btn-flat">Sign out</a>
