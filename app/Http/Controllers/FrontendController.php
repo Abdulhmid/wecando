@@ -31,6 +31,13 @@ class FrontendController extends Controller
         return view($this->folder . '.login', $data);
     }
 
+    public function getReg()
+    {
+        $data['title'] = '';
+        $data['title'] = $this->title;
+        return view($this->folder . '.register', $data);
+    }
+
     public function getCampaign()
     {
         $data['title'] = '';
