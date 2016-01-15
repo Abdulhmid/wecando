@@ -33,7 +33,15 @@ Route::group(['middleware' => ['web']], function () {
     	Route::controller('/home', 'HomeController');
     	Route::controller('/users', 'UsersController');
     	Route::controller('/groups', 'GroupsController');
+
+    	/*
+		** Front End Dashboard Route
+    	*/
+    	Route::controller('/dashboard', 'DashboardController');
 	});
 });
 
 Route::controller('/','FrontendController');
+Route::get('/error', function () {
+    return view('errors.404');
+});

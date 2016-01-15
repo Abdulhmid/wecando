@@ -46,6 +46,11 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
+        if (config('app.debug')) {
+            return parent::render($request, $e);
+        }else{
+            return response()->view("errors.404", ['exception' => $e]);
+        }
         return parent::render($request, $e);
     }
 }

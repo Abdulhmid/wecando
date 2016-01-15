@@ -9,5 +9,20 @@ use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller
 {
-    //
+    protected $model;
+    protected $title = "Dashboard";
+    protected $url = "/";
+    protected $folder = "module.member_admin";
+    protected $form;
+
+    public function __construct()
+    {
+    }
+
+    public function getIndex()
+    {
+        $data['title'] = '';
+        $data['title'] = $this->title;
+        return view($this->folder . '.index', $data);
+    }
 }
