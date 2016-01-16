@@ -13,5 +13,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(GroupTableSeeder::class);
         $this->call(UserTableSeeder::class);
+        \DB::table('state')->delete();
+        \DB::table('city')->delete();
     }
 }
