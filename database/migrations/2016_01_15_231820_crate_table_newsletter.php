@@ -5,6 +5,7 @@ use Illuminate\Database\Migrations\Migration;
 
 class CrateTableNewsletter extends Migration
 {
+    protected $table = "newsletter";
     /**
      * Run the migrations.
      *
@@ -12,7 +13,25 @@ class CrateTableNewsletter extends Migration
      */
     public function up()
     {
-        //
+      if (!Schema::hasTable($this->table)) {
+
+          Schema::create($this->table, function (Blueprint $table) {
+
+              $table->engine = 'InnoDB';
+              /** Primary key  */
+              $table->increments('id');
+
+              /** Main data  */
+              $table->string('title');
+              $table->text('content')->nullable();
+              $table->string('created_by')->default('system')->nullable();
+
+              /* Action */
+              $table->nullableTimestamps();
+              $table->softDeletes();
+
+          });
+      }
     }
 
     /**
@@ -22,6 +41,6 @@ class CrateTableNewsletter extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists($this->table);
     }
 }

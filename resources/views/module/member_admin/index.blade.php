@@ -17,7 +17,7 @@
                     </div>
                 </div>
                 <div class="portfolio-info ">
-                    <h2>Sailing Vivamus</h2>
+                    <h2>Sailing Vivamus </h2>
                 </div>
             </div>
         </div>

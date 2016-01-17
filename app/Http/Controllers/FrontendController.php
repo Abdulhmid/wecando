@@ -26,7 +26,6 @@ class FrontendController extends Controller
 
     public function getGo()
     {
-        $data['title'] = '';
         $data['title'] = $this->title;
         return view($this->folder . '.login', $data);
     }
@@ -70,8 +69,25 @@ class FrontendController extends Controller
     ** Go To System
     */
 
-    public function postGoLogin(){
-        
+    public function postGoLogin(Request $request){
+        $username = $request->get('username');
+        $password = $request->get('password');
+
+        $user = $this->findUser($username);
+
+        if ($user->count() > 0) {
+            \Session::put('member_session', $user->first()->toArray());
+            return redirect('/dashboard')->with('message','Login Berhasil');
+        }else{
+            return redirect('/go')
+                   ->with('message','Berhasil tambah data group!');
+        }
+
+    }
+
+    protected function findUser($username)
+    {
+        return \App\Models\Users::select('*')->whereEmail($username)->orWhere('username',$username);
     }
 
 }

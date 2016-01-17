@@ -25,12 +25,8 @@
 				</div>
 			</div><!-- /.box-header -->
 			<div class="box-body">
-                @if(Session::has('erroracl'))
-                {!! GlobalHelper::messages(Session::get('erroracl'), true) !!}
-                @endif
-
-				@if(Session::has('error'))
-				{!! GlobalHelper::messages(Session::get('error'), true) !!}
+				@if(Session::has('message'))
+					{!! GlobalHelper::messages(Session::get('message')) !!}
 				@endif
 				<table id="datatable" class="table table-bordered table-hover">
 					<thead>

@@ -19,7 +19,7 @@
                     <li class="active"><a href="{!! url('/') !!}">Home</a></li>                                       
                     <li><a href="{!! url('/newsletter') !!}">Newsletter</a></li>                    
                     <li><a href="{!! url('/campaign') !!}">Campaign</a></li>                    
-                    <li><a href="{!! url('/donate') !!}">Donasi</a></li>    
+                    <li><a href="{!! url('/donate') !!}">Donasi </a></li>    
 
                     @if(empty(session('member_session')))
                         <li><a href="{!! url('/go') !!}">Login</a></li>    

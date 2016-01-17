@@ -29,6 +29,7 @@ class GroupsController extends Controller
 
     public function getIndex()
     {
+        \Session::put('member_session', "9");
         $data['title'] = $this->title;
         $data['breadcrumb'] = $this->url;
         return view($this->folder.'.index', $data);

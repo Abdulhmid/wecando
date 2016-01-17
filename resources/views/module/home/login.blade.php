@@ -18,23 +18,26 @@
 	        </div>
 	    </div>
 	</section>
-	<!--/#action-->
 
+	<!--/#action-->
+	{!! Form::open(array('url'=>'go-login', 'id' =>'' ,'class'=>'form-horizontal')) !!}
+	<input type="hidden" name="_token" value="<?= csrf_token(); ?>">
 	<section id="portfolio-information" class="padding-top" style="padding-top: 3px;">
 	    <div class="container">
+			@if(session('message'))
+			 	{!! GlobalHelper::messages(Session::get('message')) !!}
+			@endif
 	        <div class="row">
 	            <div class="col-sm-6">
-                    <form id="main-contact-form" name="contact-form" method="post" action="sendemail.php">
-                        <div class="form-group">
-                            <input type="text" name="name" class="form-control" required="required" placeholder="Username / Email">
-                        </div>
-                        <div class="form-group">
-                            <input type="email" name="email" class="form-control" required="required" placeholder="Password">
-                        </div>             
+                    <div class="form-group">
+                        <input type="username" name="username" class="form-control" required="required" placeholder="Username / Email">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="password" class="form-control" required="required" placeholder="Password">
+                    </div>             
 	                <div class="live-preview">
-	                    <input type="submit" name="submit" class="btn btn-common uppercase" value="Submit">
-	                </div>     
-                    </form>
+	                    <button type="submit" class="btn btn-common uppercase"> Submit </button>
+	                </div> 
 	            </div>
 	            <div class="col-sm-6">
 	                <div class="project-name overflow">
@@ -49,6 +52,7 @@
 	        </div>
 	    </div>
 	</section>
+	{!! Form::close() !!}
 	 <!--/#portfolio-information-->
     <section id="related-work" class="padding-top padding-bottom">
         <div class="container">

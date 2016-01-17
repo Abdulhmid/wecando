@@ -29,18 +29,19 @@ Route::get('/', function () {
 Route::group(['middleware' => ['web']], function () {
     Route::auth();
 
-	Route::group(['middleware' => ['auth']], function () {    
-    	Route::controller('/home', 'HomeController');
-    	Route::controller('/users', 'UsersController');
+    Route::controller('/dashboard', 'DashboardController');
+    Route::group(['middleware' => ['auth']], function () {    
+        Route::controller('/home', 'HomeController');
+        Route::controller('/users', 'UsersController');
         Route::controller('/groups', 'GroupsController');
-    	Route::controller('/partners', 'PartnersController');
+        Route::controller('/partners', 'PartnersController');
 
-    	/*
-		** Front End Dashboard Route
-    	*/
-    	Route::controller('/dashboard', 'DashboardController');
-	});
+        /*
+        ** Front End Dashboard Route
+        */
+    });
 });
+
 
 Route::controller('/','FrontendController');
 Route::get('/error', function () {

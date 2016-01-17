@@ -17,11 +17,11 @@ class DashboardController extends Controller
 
     public function __construct()
     {
+        $this->middleware('authMember',['except' => 'getGo']);
     }
 
     public function getIndex()
     {
-        $data['title'] = '';
         $data['title'] = $this->title;
         return view($this->folder . '.index', $data);
     }
