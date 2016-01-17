@@ -26,10 +26,10 @@
                         <li><a href="{!! url('/reg') !!}">Register</a></li>    
                     @else
                         <li class="dropdown">
-                            <a href="#"> Masuk </i></a>
+                            <a href="#"> {!! session('member_session')['username'] !!} </i></a>
                             <ul role="menu" class="sub-menu">
-                                <li><a href="aboutus.html">Login</a></li>
-                                <li><a href="aboutus2.html">Register</a></li>
+                                <li><a href="{!! url('dashboard') !!}">Dashboard</a></li>
+                                <li><a href="{!! url('go-out') !!}">Keluar</a></li>
                             </ul>
                         </li>  
                     @endif               

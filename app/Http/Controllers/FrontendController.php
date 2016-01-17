@@ -76,13 +76,19 @@ class FrontendController extends Controller
         $user = $this->findUser($username);
 
         if ($user->count() > 0) {
-            \Session::put('member_session', $user->first()->toArray());
+            \Session::put('member_session', $user->first());
             return redirect('/dashboard')->with('message','Login Berhasil');
         }else{
             return redirect('/go')
-                   ->with('message','Berhasil tambah data group!');
+                   ->with('message','Akun Anda Belum Terdaftar!');
         }
 
+    }
+
+    public function getGoOut(){
+        session()->flush();
+        return redirect('/go')
+               ->with('message','Terima Kasih!');
     }
 
     protected function findUser($username)

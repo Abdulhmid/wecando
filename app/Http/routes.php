@@ -40,10 +40,10 @@ Route::group(['middleware' => ['web']], function () {
         ** Front End Dashboard Route
         */
     });
+    Route::controller('/','FrontendController');
 });
 
 
-Route::controller('/','FrontendController');
 Route::get('/error', function () {
     return view('errors.404');
 });
