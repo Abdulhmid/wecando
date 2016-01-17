@@ -34,7 +34,11 @@
                         <input class="form-control" name="username" type="text" value="" id="username">
                     </div>
                     <div class="form-group">
-                        <label for="username" class="control-label">Lokasi</label>
+                        <label for="username" class="control-label">Provinsi</label>
+                        <input class="form-control" name="username" type="text" value="" id="username">
+                    </div>
+                    <div class="form-group">
+                        <label for="username" class="control-label">Kota</label>
                         <input class="form-control" name="username" type="text" value="" id="username">
                     </div>
                     <div class="form-group">
@@ -46,14 +50,14 @@
                         <input class="form-control" name="username" type="text" value="" id="username">
                     </div>
                     <div class="form-group">
-                        <label for="username" class="control-label">Detail Informasi</label>
-                        <input class="form-control" name="username" type="text" value="" id="username">
+                        <label for="username" class="control-label">Video</label>
+                        <input class="form-control" name="video" type="text" value="" id="video">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="username" class="control-label">Video</label>
-                        <input class="form-control" name="video" type="text" value="" id="video">
+                        <label for="username" class="control-label">Detail Informasi</label>
+                        <textarea class="form-control" name="content" type="text" value="" id="content"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="image" class="control-label">Image</label>
