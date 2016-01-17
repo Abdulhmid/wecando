@@ -21,5 +21,11 @@ class Users extends Model {
                                                   'status','users.created_at')->get();
     }
 
+    public static $rulesRegister = array(
+        'email'      => 'required',
+        'password'      => 'required|confirmed',
+        'address'      => 'required'
+    );
+
 }
 ?>

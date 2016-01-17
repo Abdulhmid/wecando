@@ -35,7 +35,7 @@
                     <div class="action">
                         <div class="col-sm-12">
                             <h1 class="title">Dashboard</h1>
-                            <p>Mr. YUniro wINARTO</p>
+                            <p>{!! session('member_session')['fullname'] !!}</p>
                         </div>
                     </div>
                 </div>

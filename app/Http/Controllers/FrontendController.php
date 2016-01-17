@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use App\Models as Md;
 
 class FrontendController extends Controller
 {
@@ -19,7 +20,6 @@ class FrontendController extends Controller
 
     public function getIndex()
     {
-        $data['title'] = '';
         $data['title'] = $this->title;
         return view($this->folder . '.index', $data);
     }
@@ -32,37 +32,44 @@ class FrontendController extends Controller
 
     public function getReg()
     {
-        $data['title'] = '';
         $data['title'] = $this->title;
         return view($this->folder . '.register', $data);
     }
 
     public function getCampaign()
     {
-        $data['title'] = '';
         $data['title'] = $this->title;
         return view($this->folder . '.campaign', $data);
     }
 
     public function getDonate()
     {
-        $data['title'] = '';
         $data['title'] = $this->title;
         return view($this->folder . '.donate', $data);
     }
 
     public function getNewsletter()
     {
-        $data['title'] = '';
         $data['title'] = $this->title;
         return view($this->folder . '.newsletter', $data);
     }
 
     public function getDetailNewsletter()
     {
-        $data['title'] = '';
         $data['title'] = $this->title;
         return view($this->folder . '.detail_newsletter', $data);
+    }
+
+    public function getHow()
+    {
+        $data['title'] = $this->title;
+        return view($this->folder . '.how', $data);
+    }
+
+    public function getCreateCampaign()
+    {
+        $data['title'] = $this->title;
+        return view($this->folder . '.create_campaign', $data);
     }
 
     /*
@@ -76,13 +83,33 @@ class FrontendController extends Controller
         $user = $this->findUser($username);
 
         if ($user->count() > 0) {
-            \Session::put('member_session', $user->first());
-            return redirect('/dashboard')->with('message','Login Berhasil');
+            if ($user->first()->status == 0) {
+                return redirect('/go')
+                       ->with('message','Akun Anda Belum Aktif!');
+            }
+
+            if (\Auth::attempt(array('email'=>$username, 'password'=>$password))) {
+                \Session::put('member_session', $user->first());
+                return redirect('/dashboard')->with('message','Login Berhasil');
+            }
+
+            return redirect()->back()
+                             ->with('message','Username dan Password Tidak Cocok');
+
         }else{
             return redirect('/go')
                    ->with('message','Akun Anda Belum Terdaftar!');
         }
 
+    }
+
+    public function postGoRegister(Request $request){
+        $rules = Md\Users::$rulesRegister; 
+        $validator = \Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
     }
 
     public function getGoOut(){

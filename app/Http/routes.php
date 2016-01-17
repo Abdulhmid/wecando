@@ -35,6 +35,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::controller('/users', 'UsersController');
         Route::controller('/groups', 'GroupsController');
         Route::controller('/partners', 'PartnersController');
+        Route::controller('/newsletter', 'NewsletterController');
 
         /*
         ** Front End Dashboard Route

@@ -7,24 +7,24 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models as Md;
-use App\Additionals\Datatables\GroupsDatatable;
+use App\Additionals\Datatables\NewsletterDatatable;
 use Kris\LaravelFormBuilder\FormBuilder;
-use App\Forms\GroupsForm;
-use App\Http\Requests\GroupsRequest;
+use App\Forms\NewsletterForms;
+use App\Http\Requests\NewsletterRequest;
 use Illuminate\Support\Facades\Input;
 
-class GroupsController extends Controller
+class NewsletterController extends Controller
 {
     protected $model;
-    protected $title = "Data Group";
-    protected $url = "groups";
-    protected $folder = "module.groups";
+    protected $title = "Data Newsletter";
+    protected $url = "newsletter";
+    protected $folder = "module.newsletter";
     protected $form;
 
-    public function __construct(Md\Groups $model)
+    public function __construct(Md\Newsletter $model)
     {
         $this->model    = $model;
-        $this->form     = GroupsForm::class;
+        $this->form     = NewsletterForms::class;
     }
 
     public function getIndex()
@@ -46,15 +46,21 @@ class GroupsController extends Controller
                                             'breadcrumb' => 'new-'.$this->url]);
     }
 
-    public function postStore(GroupsRequest $request=null, $id="")
+    public function postStore(NewsletterRequest $request=null, $id="")
     {
         $input = $request->except('save_continue');
         $result = '';
 
+        if( \Request::hasFile('image'))
+            $photo  = (new \ImageUpload($input))->upload();
+
         if($id == "" ) :
+        	$input['image'] = isset($photo) ? $photo : "" ;
             $query = $this->model->create($input);
             $result = $query->id;
         else :
+            if(\Request::hasFile('image'))
+                $input['image'] = isset($photo) ? $photo : "";
             $this->model->find($id)->update($input);
             $result = $id;
         endif;
@@ -62,7 +68,7 @@ class GroupsController extends Controller
         $save_continue = \Input::get('save_continue');
         $redirect = empty($save_continue)?$this->url:$this->url.'/edit/'.$result;
 
-        return redirect($redirect)->with('message','Berhasil tambah data group!');
+        return redirect($redirect)->with('message','Berhasil tambah data Newsletter!');
     }
 
     public function getEdit(FormBuilder $formBuilder=null, $id="")
@@ -79,6 +85,7 @@ class GroupsController extends Controller
 
         return view($this->folder.'.form', ['title' => $this->title,
                                             'form' => $form,
+                                            'row' => $edit,
                                             'breadcrumb' => 'edit-'.$this->url]);
     }
 
@@ -90,11 +97,11 @@ class GroupsController extends Controller
 
         $groups->delete();
 
-        return redirect($this->url)->with('message','Berhasil hapus data group!');
+        return redirect($this->url)->with('message','Berhasil hapus data Newsletter!');
 
     }
 
     public function getData(Request $request){
-        return (new GroupsDatatable($this->model))->make();
+        return (new NewsletterDatatable($this->model))->make();
     }
 }

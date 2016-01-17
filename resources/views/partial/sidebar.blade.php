@@ -46,8 +46,8 @@
                     <span>Pembayaran</span>
                 </a>
             </li>
-            <li class="{!! $segment == 'users'  ? 'active' : '' !!}">
-                <a href="{!! url('/users') !!}">
+            <li class="{!! $segment == 'newsletter'  ? 'active' : '' !!}">
+                <a href="{!! url('/newsletter') !!}">
                     <i class="fa fa-bar-chart"></i>
                     <span>Newsletter</span>
                 </a>
