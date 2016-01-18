@@ -24,7 +24,7 @@ class CreateTableUsers extends Migration
                 /* Main Data*/
                 $table->string('fullname');
                 $table->string('email')->unique();
-                $table->string('no_telp')->unique();
+                $table->string('no_telp')->nullable();
                 $table->string('username')->unique();
                 $table->string('password',255);
                 $table->string('image',255)->nullable();

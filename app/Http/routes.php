@@ -30,6 +30,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::auth();
 
     Route::controller('/dashboard', 'DashboardController');
+    Route::controller('/','FrontendController');
+    
     Route::group(['middleware' => ['auth']], function () {    
         Route::controller('/home', 'HomeController');
         Route::controller('/users', 'UsersController');
@@ -41,7 +43,6 @@ Route::group(['middleware' => ['web']], function () {
         ** Front End Dashboard Route
         */
     });
-    Route::controller('/','FrontendController');
 });
 
 

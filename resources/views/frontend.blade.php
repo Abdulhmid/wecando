@@ -42,6 +42,10 @@
         <script type="text/javascript" src="{!! asset('additional/home/js/wow.min.js') !!}"></script>
         <script type="text/javascript" src="{!! asset('additional/home/js/main.js') !!}"></script>   
 
+        <script type="text/javascript">
+                  //  jQuery('.nailthumb-container').nailthumb();
+                   $('.autohide').delay(5000).fadeOut('slow');
+        </script>
         @yield('script')
 
     </body>

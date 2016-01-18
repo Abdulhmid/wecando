@@ -14,8 +14,9 @@ class FrontendController extends Controller
     protected $folder = "module.home";
     protected $form;
 
-    public function __construct()
+    public function __construct(Md\Users $users)
     {
+        $this->users = $users;
     }
 
     public function getIndex()
@@ -111,7 +112,49 @@ class FrontendController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
+        $countUsers = $this->users->whereEmail($request->get('email'))->count();
+        if ($countUsers > 0) {
+            return redirect()->back()
+                             ->withInput()
+                             ->with('messageError','Email sudah Terdaftar.');
+        }
+
+        $idGroup = Md\Groups::where(\DB::raw('lower(name_content)'),strtolower('member'))->first()->id;
+
+        $input = $request->except(['password_confirmation','submit']);
+        $input['password']  = bcrypt($request->get('password'));
+        $input['username']  = $request->get('email');
+        $input['status']    = 0;
+        $input['no_telp']   = '-';
+        $input['remember_token']   = md5($request->get('email'));
+        $input['id_group']  = $idGroup;
+
+        \Mail::send('auth.emails.confirmation', $input, function($message) use ($request) {
+            $message->to($request->get('email'), "New Member")->subject('Konfirmasi Pendaftaran');
+        });
+
+        $this->users->create($input);
+
+        return redirect()->back()
+                         ->with('message','Pendaftaran Berhasil, Cek Email untuk melakukan konfirmasi.');
+
+    }
+
+    public function getConfirmation($token = ""){
+        if($token == "") return redirect('/')->with('message','Anda tidak memiliki Akses');
+
+        $dataUser = $this->users->where('remember_token', $token);
         
+        if($dataUser->count() < 1) return redirect('/')->with('message','Invalid Token');
+
+
+        \Session::put('member_session', $dataUser->first());
+
+        $dataUser->update(['status' => '1',
+                            'remember_token' => '']);
+        
+        return redirect('/dashboard')->with('message','Login Berhasil');
+
     }
 
     public function getGoOut(){

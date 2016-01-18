@@ -23,6 +23,13 @@
 	<input type="hidden" name="_token" value="<?= csrf_token(); ?>">
 	<section id="portfolio-information" class="padding-top" style="padding-top: 3px;">
 	    <div class="container">
+			@if(Session::has('messageError'))
+				{!! GlobalHelper::messages(Session::get('messageError'), true) !!}
+			@endif
+
+			@if(Session::has('message'))
+				{!! GlobalHelper::messages(Session::get('message'), true) !!}
+			@endif
 			@if (count($errors) > 0)
 				<div class="alert alert-danger">
 					<strong>Whoops!</strong> There were some problems with your input.<br><br>
