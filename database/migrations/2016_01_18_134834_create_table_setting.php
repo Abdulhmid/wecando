@@ -3,9 +3,9 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTableGroups extends Migration
+class CreateTableSetting extends Migration
 {
-    protected $table = "groups";
+    protected $table = "setting";
     /**
      * Run the migrations.
      *
@@ -22,14 +22,14 @@ class CreateTableGroups extends Migration
               $table->increments('id');
 
               /** Main data  */
-              $table->string('group_name');
-              $table->string('name_content')->nullable();
-              $table->text('description')->nullable();
+              $table->integer('user_id')->nullable();
+              $table->decimal('donate',19,2)->default(0);
+              $table->string('transfer_method')->nullable();
               $table->string('created_by')->default('system')->nullable();
 
+              /* Foreign Key */
               /* Action */
               $table->nullableTimestamps();
-              $table->softDeletes();
 
           });
       }

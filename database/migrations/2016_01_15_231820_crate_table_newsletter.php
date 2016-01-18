@@ -25,6 +25,7 @@ class CrateTableNewsletter extends Migration
               $table->string('title');
               $table->string('image');
               $table->text('content')->nullable();
+              $table->text('files')->nullable();
               $table->string('created_by')->default('system')->nullable();
 
               /* Action */

@@ -1,7 +1,9 @@
 @extends('frontend')
 
 @section('style')
-
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet">
+    <!-- <link href="{!! url('plugins/summernote') !!}/font-awesome.css" rel="stylesheet"> -->
+    <link href="{!! url('plugins/summernote') !!}/summernote.css" rel="stylesheet">
 @stop
 
 @section('content')
@@ -89,7 +91,12 @@
 @stop
 
 @section('script')
+    <!-- Editor Script -->
+    <script src="{!! url('plugins/summernote') !!}/summernote.js"></script>
     <script type="text/javascript">
+        $(document).ready(function(){
+            $('#content').summernote();
+        });
         function readUrl(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();

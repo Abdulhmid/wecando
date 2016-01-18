@@ -110,6 +110,8 @@ class FrontendController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
+
+        
     }
 
     public function getGoOut(){

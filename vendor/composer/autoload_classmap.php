@@ -29,6 +29,7 @@ return array(
     'CrateTableState' => $baseDir . '/database/migrations/2016_01_14_100002_crate_table_state.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
     'CreateTableGroups' => $baseDir . '/database/migrations/2016_01_14_174841_create_table_groups.php',
+    'CreateTableSetting' => $baseDir . '/database/migrations/2016_01_18_134834_create_table_setting.php',
     'CreateTableUsers' => $baseDir . '/database/migrations/2016_01_14_174846_create_table_users.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
     'DOMPDF' => $vendorDir . '/dompdf/dompdf/include/dompdf.cls.php',

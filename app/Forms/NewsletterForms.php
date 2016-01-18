@@ -16,7 +16,7 @@ class NewsletterForms extends Form
             )
             ->add('content', 'textarea',
                 [
-                    'attr' => ['class' => 'wysihtml52 form-control']
+                    'attr' => ['class' => 'wysihtml52 form-control','id' => 'content']
                 ]
             )
     		->add('image','file',[

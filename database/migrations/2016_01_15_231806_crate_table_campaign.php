@@ -37,6 +37,7 @@ class CrateTableCampaign extends Migration
               $table->nullableTimestamps();
               $table->softDeletes();
 
+              $table->text('files')->nullable();
               /* Foreign Key */
               $table->integer('location_id')->unsigned();
               $table->foreign('location_id')->references('city_id')
