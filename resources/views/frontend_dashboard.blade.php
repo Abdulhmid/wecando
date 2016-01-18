@@ -24,7 +24,7 @@
 </head><!--/head-->
 
 <body>
-
+    <?php $segment = GLobalHelper::indexUrl(); ?>
     @include('partial.header')
 
 
@@ -52,14 +52,9 @@
                         <div class="sidebar-item categories">
                             <h3>Menu</h3>
                             <ul class="nav navbar-stacked">
-                                <li><a href="#">Branded<span class="pull-right">(1)</span></a></li>
-                                <li class="active"><a href="#">Design<span class="pull-right">(8)</span></a></li>
-                                <li><a href="#">Folio<span class="pull-right">(4)</span></a></li>
-                                <li><a href="#">Logos<span class="pull-right">(9)</span></a></li>
-                                <li><a href="#">Mobile<span class="pull-right">(3)</span></a></li>
-                                <li><a href="#">Mockup<span class="pull-right">(4)</span></a></li>
-                                <li><a href="#">Php<span class="pull-right">(2)</span></a></li>
-                                <li><a href="#">Wordpress<span class="pull-right">(8)</span></a></li>
+                                <li class="{!! $segment == 'dashboard' ? 'active' : '' !!}"><a href="{!! url('dashboard') !!}">Dashboard<span class="pull-right">(1)</span></a></li>
+                                <li class="{!! $segment == 'me-campaign' ? 'active' : '' !!}"><a href="{!! url('me-campaign') !!}">My Campaign<span class="pull-right">(8)</span></a></li>
+                                <li class="{!! $segment == 'create-campaign' ? 'active' : '' !!}"><a href="{!! url('create-campaign') !!}">Buat Campaign<span class="pull-right">(4)</span></a></li>
                             </ul>
                         </div>
                     </div>

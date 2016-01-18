@@ -28,8 +28,20 @@
                 </ul>
             </li>
             <li class="header">Aktivitas</li>
-            <li class="{!! $segment == 'groups' ? 'active' : '' !!}">
-                <a href="{!! url('/groups') !!}">
+            <li class="{!! $segment == 'partners'  ? 'active' : '' !!}">
+                <a href="{!! url('/partners') !!}">
+                    <i class="fa fa-bar-chart"></i>
+                    <span>Partners</span>
+                </a>
+            </li>
+            <li class="{!! $segment == 'back-newsletter'  ? 'active' : '' !!}">
+                <a href="{!! url('/back-newsletter') !!}">
+                    <i class="fa fa-bar-chart"></i>
+                    <span>Newsletter</span>
+                </a>
+            </li>
+            <li class="{!! $segment == 'back-campaign' ? 'active' : '' !!}">
+                <a href="{!! url('/back-campaign') !!}">
                     <i class="fa fa-bar-chart"></i>
                     <span>Campaign</span>
                 </a>
@@ -44,12 +56,6 @@
                 <a href="{!! url('/users') !!}">
                     <i class="fa fa-bar-chart"></i>
                     <span>Pembayaran</span>
-                </a>
-            </li>
-            <li class="{!! $segment == 'newsletter'  ? 'active' : '' !!}">
-                <a href="{!! url('/newsletter') !!}">
-                    <i class="fa fa-bar-chart"></i>
-                    <span>Newsletter</span>
                 </a>
             </li>
 

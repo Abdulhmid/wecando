@@ -12,9 +12,12 @@
              <div class="container">
                 <div class="row">
                     <div class="action">
-                        <div class="col-sm-12">
+                        <div class="col-sm-8">
                             <h1 class="title">Fundraising</h1>
                             <p>Buat Fundraising Baru</p>
+                        </div>
+                        <div class="col-sm-4" class="pull-right" style="margin-top:12px">
+                            <a href="{!! url('dashboard') !!}" class="pull-right btn btn-info">Back</a>
                         </div>
                     </div>
                 </div>

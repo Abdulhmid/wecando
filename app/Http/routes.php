@@ -30,19 +30,20 @@ Route::group(['middleware' => ['web']], function () {
     Route::auth();
 
     Route::controller('/dashboard', 'DashboardController');
-    Route::controller('/','FrontendController');
     
     Route::group(['middleware' => ['auth']], function () {    
         Route::controller('/home', 'HomeController');
         Route::controller('/users', 'UsersController');
         Route::controller('/groups', 'GroupsController');
         Route::controller('/partners', 'PartnersController');
-        Route::controller('/newsletter', 'NewsletterController');
+        Route::controller('/back-newsletter', 'NewsletterController');
+        Route::controller('/back-campaign', 'BackCampaignController');
 
         /*
         ** Front End Dashboard Route
         */
     });
+    Route::controller('/','FrontendController');
 });
 
 

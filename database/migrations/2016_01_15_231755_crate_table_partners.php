@@ -5,7 +5,7 @@ use Illuminate\Database\Migrations\Migration;
 
 class CrateTablePartners extends Migration
 {
-    protected $table = "users";
+    protected $table = "partners";
     /**
      * Run the migrations.
      *
@@ -23,7 +23,7 @@ class CrateTablePartners extends Migration
 
               /** Main data  */
               $table->string('name');
-              $table->text('imgae')->nullable();
+              $table->text('image')->nullable();
               $table->text('description')->nullable();
               $table->string('created_by')->default('system')->nullable();
 

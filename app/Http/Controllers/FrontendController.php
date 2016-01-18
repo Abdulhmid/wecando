@@ -17,6 +17,7 @@ class FrontendController extends Controller
     public function __construct(Md\Users $users)
     {
         $this->users = $users;
+        $this->middleware('authMember',['only' => 'getCreateCampaign']);
     }
 
     public function getIndex()
@@ -71,6 +72,18 @@ class FrontendController extends Controller
     {
         $data['title'] = $this->title;
         return view($this->folder . '.create_campaign', $data);
+    }
+
+    public function getMeCampaign()
+    {
+        $data['title'] = $this->title;
+        return view($this->folder . '.me_campaign', $data);
+    }
+
+    public function getMeDetailCampaign()
+    {
+        $data['title'] = $this->title;
+        return view($this->folder . '.me_detail_campaign', $data);
     }
 
     /*
@@ -144,7 +157,7 @@ class FrontendController extends Controller
         if($token == "") return redirect('/')->with('message','Anda tidak memiliki Akses');
 
         $dataUser = $this->users->where('remember_token', $token);
-        
+
         if($dataUser->count() < 1) return redirect('/')->with('message','Invalid Token');
 
 

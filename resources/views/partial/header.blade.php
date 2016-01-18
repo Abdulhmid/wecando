@@ -9,8 +9,9 @@
                     <span class="icon-bar"></span>
                 </button>
 
-                <a class="navbar-brand" href="{!! url('/') !!}">
-                    <h1><img src="{!! asset('additional/home/images/logo.png') !!}" alt="logo"></h1>
+                <a class="navbar-brand" href="{!! url('/') !!}" style="margin-top:7px">
+                    <!-- <h1><img src="{!! asset('additional/home/images/logo.png') !!}" alt="logo"></h1> -->
+                    <h1>We Can Together</h1>
                 </a>
                 
             </div>
@@ -35,7 +36,7 @@
                     @endif               
                 </ul>
             </div>
-            <div class="search">
+            <div class="search" style="display:none">
                 <form role="form">
                     <i class="fa fa-search"></i>
                     <div class="field-toggle">

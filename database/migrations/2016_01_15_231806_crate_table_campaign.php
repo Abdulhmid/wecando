@@ -29,6 +29,9 @@ class CrateTableCampaign extends Migration
               $table->decimal('target',19,2)->default(0);
               $table->decimal('donate',19,2)->default(0);
 
+              $table->timestamp('start');
+              $table->timestamp('stop');
+
               $table->text('detail')->nullable();
               $table->tinyInteger('status')->default(0);
 

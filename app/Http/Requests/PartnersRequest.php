@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class GroupsRequest extends Request
+class PartnersRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,15 +25,15 @@ class GroupsRequest extends Request
     {
         $rules = [
             'description' => 'required',
+            'image'  => 'max:2000|mimes:jpeg,gif,png'
         ];
         $last    = \GLobalHelper::lastUrl();  
 
-
         if(is_numeric($last)) : 
-            $rules['group_name'] = 'required|unique:groups,group_name,'.$last.',id';
+            $rules['name'] = 'required';
             // $rules['order'] = 'required';
         else :
-            $rules['group_name'] = 'required';
+            $rules['name'] = 'required';
             // $rules['order'] = 'required';
         endif;
 
