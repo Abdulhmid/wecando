@@ -1,33 +1,25 @@
 <section id="features">
     <div class="container">
-        <div class="row">
-            <div class="single-features">
-                <div class="col-sm-5 wow fadeInLeft" data-wow-duration="500ms" data-wow-delay="300ms">
-                    <img src="{!! asset('additional/home/images/home/image1.png') !!}" class="img-responsive" alt="">
+        <div class="row  {!! !empty($campaignFinish) ? 'col-centered' : '' !!}">
+            @if(!empty($campaignFinish))
+                <div class="single-features">
+                    <div class="col-sm-5 wow {!! ($key % 2 == '0') ? 'align-right' : '' !!} fadeInLeft" data-wow-duration="500ms" data-wow-delay="300ms">
+                        <img src="{!! GLobalHelper::checkImage($value['image']) !!}" class="img-responsive" alt="">
+                    </div>
+                    <div class="col-sm-6 wow fadeInRight" data-wow-duration="500ms" data-wow-delay="300ms">
+                        <h2>{!! $value['title'] !!}</h2>
+                        <P>Target Donasi <b>{!! $value['target'] !!}</b> &amp; Donasi Terkumpul : <b>{!! $value['donate'] !!}</b>. Hastag : <b>{!! $value['hastag'] !!}</b> </P>
+                    </div>
                 </div>
-                <div class="col-sm-6 wow fadeInRight" data-wow-duration="500ms" data-wow-delay="300ms">
-                    <h2>Experienced and Enthusiastic</h2>
-                    <P>Pork belly leberkas cow short ribs capicola pork loin. Doner fatback frankfurter jerky meatball pastrami bacon tail sausage. Turkey fatback ball tip, tri-tip tenderloin drumstick salami strip steak.</P>
+            @else
+                <div class="single-features">
+                    <div class="col-sm-12 col-centered  wow fadeInRight" data-wow-duration="500ms" data-wow-delay="300ms">
+                        <h2>Belum Ada Campaign yang selesai.</h2>
+                        <p>Tiga Campaign yang sudah selesai akan selalu tampil.</p>
+                    </div>
                 </div>
-            </div>
-            <div class="single-features">
-                <div class="col-sm-6 col-sm-offset-1 align-right wow fadeInLeft" data-wow-duration="500ms" data-wow-delay="300ms">
-                    <h2>Built for the Responsive Web</h2>
-                    <P>Mollit eiusmod id chuck turducken laboris meatloaf pork loin tenderloin swine. Pancetta excepteur fugiat strip steak tri-tip. Swine salami eiusmod sint, ex id venison non. Fugiat ea jowl cillum meatloaf.</P>
-                </div>
-                <div class="col-sm-5 wow fadeInRight" data-wow-duration="500ms" data-wow-delay="300ms">
-                    <img src="{!! asset('additional/home/images/home/image2.png') !!}" class="img-responsive" alt="">
-                </div>
-            </div>
-            <div class="single-features">
-                <div class="col-sm-5 wow fadeInLeft" data-wow-duration="500ms" data-wow-delay="300ms">
-                    <img src="{!! asset('additional/home/images/home/image3.png') !!}" class="img-responsive" alt="">
-                </div>
-                <div class="col-sm-6 wow fadeInRight" data-wow-duration="500ms" data-wow-delay="300ms">
-                    <h2>Experienced and Enthusiastic</h2>
-                    <P>Ut officia cupidatat anim excepteur fugiat cillum ea occaecat rump pork chop tempor. Ut tenderloin veniam commodo. Shankle aliquip short ribs, chicken eiusmod exercitation shank landjaeger spare ribs corned beef.</P>
-                </div>
-            </div>
+
+            @endif
         </div>
     </div>
 </section>

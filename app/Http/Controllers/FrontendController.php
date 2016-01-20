@@ -14,14 +14,29 @@ class FrontendController extends Controller
     protected $folder = "module.home";
     protected $form;
 
-    public function __construct(Md\Users $users)
+    public function __construct(    
+                                Md\Users $users,
+                                Md\Partners $partners,
+                                Md\Campaign $campaign,
+                                Md\campaignCategory $campaignCat
+                               )
     {
         $this->users = $users;
+        $this->partners = $partners;
+        $this->campaign = $campaign;
+        $this->campaignCat = $campaignCat;
         $this->middleware('authMember',['only' => 'getCreateCampaign']);
     }
 
     public function getIndex()
     {
+        $data['partners']       = $this->partners->orderBy('id','desc')->limit(6)->get()->toArray();
+        $data['campaignStart']  = $this->campaign->where('status','0')
+                                       ->orderBy('id','desc')->limit(3)->get()
+                                       ->toArray();
+        $data['campaignFinish'] = $this->campaign->where('status','1')
+                                       ->orderBy('id','desc')->limit(3)->get()
+                                       ->toArray();
         $data['title'] = $this->title;
         return view($this->folder . '.index', $data);
     }
