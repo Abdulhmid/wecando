@@ -3,7 +3,7 @@
         <div class="row row-centered">
             <div class="col-sm-12">
                 <div class="clients text-center wow fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
-                    <p><img src="{!! asset('additional/home/images/home/clients.png') !!}" class="img-responsive" alt=""></p>
+                    <p><img src="{!! asset('additional/home/images/partners_2.png') !!}" class="img-responsive" alt=""></p>
                     <h1 class="title">Partner</h1>
                     <p>Organisasi atau Instansi yang sudah bergabung bersama kami . <br> </p><hr/>  
                 </div>

@@ -798,7 +798,8 @@ ul.sub-menu {
 }
 
 .tour-button {
-  background-image: url(../images/home/tour-icon2.png);
+  /*background-image: url(../images/home/tour-icon2.png);*/
+  background-image: url(../images/give_4.png);
   height: 100%;
   background-repeat: no-repeat;
   position: absolute;
