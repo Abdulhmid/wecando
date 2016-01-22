@@ -17,18 +17,17 @@ class CreateTableSetting extends Migration
 
           Schema::create($this->table, function (Blueprint $table) {
 
+
               $table->engine = 'InnoDB';
               /** Primary key  */
               $table->increments('id');
 
               /** Main data  */
-              $table->integer('user_id')->nullable();
-              $table->decimal('donate',19,2)->default(0);
-              $table->string('transfer_method')->nullable();
-              $table->string('created_by')->default('system')->nullable();
+              $table->string('key')->nullable();
+              $table->text('value')->nullable();
 
-              /* Foreign Key */
               /* Action */
+              $table->string('created_by')->default('system');
               $table->nullableTimestamps();
 
           });

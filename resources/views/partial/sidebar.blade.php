@@ -68,9 +68,9 @@
             </li>
 
             <li class="header">Setting</li>
-            <li class="{!! $segment == 'users'  ? 'active' : '' !!}">
-                <a href="{!! url('/users') !!}">
-                    <i class="fa fa-bar-chart"></i>
+            <li class="{!! $segment == 'configuration'  ? 'active' : '' !!}">
+                <a href="{!! url('/configuration') !!}">
+                    <i class="fa fa-wrench"></i>
                     <span>Setting Website</span>
                 </a>
             </li>

@@ -25,8 +25,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 col-sm-7">
+                    {{--*/ $newsletterData = $newsletter->paginate(10); /*--}}
                     <div class="row">
-                        {{--*/ $newsletterData = $newsletter->paginate(10); /*--}}
                         @if($newsletter->count() > 0)
                             @foreach($newsletterData as $key => $value)
                                 <div class="col-md-4 col-sm-12 blog-padding-right">
@@ -60,6 +60,10 @@
 
                     </div>
                     <div class="blog-pagination">
+                        {!! $newsletterData->render(); !!}
+                    </div>
+
+                    <!-- <div class="blog-pagination">
                         <ul class="pagination">
                           <li><a href="#">left</a></li>
                           <li><a href="#">1</a></li>
@@ -73,7 +77,7 @@
                           <li><a href="#">9</a></li>
                           <li><a href="#">right</a></li>
                         </ul>
-                    </div>
+                    </div> -->
                  </div>
             </div>
         </div>
