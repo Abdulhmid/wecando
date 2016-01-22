@@ -10,8 +10,8 @@
                 </button>
 
                 <a class="navbar-brand" href="{!! url('/') !!}" style="margin-top:7px">
-                    <!-- <h1><img src="{!! asset('additional/home/images/logo.png') !!}" alt="logo"></h1> -->
-                    <h1>We Can Together</h1>
+                    <h1><img src="{!! asset('image/default/logo.png') !!}" alt="logo"></h1>
+                    <!-- <h1>We Can Together</h1> -->
                 </a>
                 
             </div>
