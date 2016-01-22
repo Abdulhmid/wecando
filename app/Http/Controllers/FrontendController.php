@@ -18,13 +18,15 @@ class FrontendController extends Controller
                                 Md\Users $users,
                                 Md\Partners $partners,
                                 Md\Campaign $campaign,
-                                Md\campaignCategory $campaignCat
+                                Md\campaignCategory $campaignCat,
+                                Md\Newsletter $newsletter
                                )
     {
         $this->users = $users;
         $this->partners = $partners;
         $this->campaign = $campaign;
         $this->campaignCat = $campaignCat;
+        $this->newsletter = $newsletter;
         $this->middleware('authMember',['only' => 'getCreateCampaign']);
     }
 
@@ -68,6 +70,8 @@ class FrontendController extends Controller
     public function getNewsletter()
     {
         $data['title'] = $this->title;
+        $data['newsletter'] = $this->newsletter;
+
         return view($this->folder . '.newsletter', $data);
     }
 

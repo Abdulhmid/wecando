@@ -37,10 +37,8 @@ class ImageUpload {
 
 	protected function nameFile()
 	{
-//		$datetime = date('Y m d H:i:s');
 		$extension =  $this->request['image']->getClientOriginalExtension();
 		$originName = $this->request['image']->getClientOriginalName();
-//		$string = (isset($this->request['name']) ? $this->request['name'] : str_slug($title, $separator);
 		$this->name = str_slug($originName).".".$extension;
 		return $this;
 	}

@@ -23,7 +23,7 @@ class NewsletterDatatable {
 	public function make()
 	{
 		return \Datatables::of($this->data)
-			->editColumn('image','<img src="{!! GLobalHelper::checkImage($image) !!}" style="max-height:100px" class="thumbnail"> ')
+			->editColumn('image','<img src="{!! GLobalHelper::checkImage($image,"article") !!}" style="max-height:100px" class="thumbnail"> ')
 			->addColumn('action','
 				<a href="{!! url(GLobalHelper::indexUrl().\'/edit/\'.$id) !!}" class="btn btn-flat btn-default btn-sm" data-toggle="tooltip" data-original-title="Edit">
 					<i class="fa fa-pencil"></i> Ubah
@@ -33,6 +33,7 @@ class NewsletterDatatable {
 				</a>
 				')
 			->editColumn('created_at','{!! GlobalHelper::formatDate($created_at) !!}')
+			->editColumn('content','{!! GlobalHelper::softTrim($content,81) !!}')
 			->removeColumn('id')
 			->make(true);
 	}

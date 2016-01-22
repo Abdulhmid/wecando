@@ -17,7 +17,7 @@ class NewsletterController extends Controller
 {
     protected $model;
     protected $title = "Data Newsletter";
-    protected $url = "newsletter";
+    protected $url = "back-newsletter";
     protected $folder = "module.newsletter";
     protected $form;
 
@@ -52,7 +52,7 @@ class NewsletterController extends Controller
         $result = '';
 
         if( \Request::hasFile('image'))
-            $photo  = (new \ImageUpload($input))->upload();
+            $photo  = (new \ImageUpload($input,480,270))->upload();
 
         if($id == "" ) :
         	$input['image'] = isset($photo) ? $photo : "" ;

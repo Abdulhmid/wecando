@@ -25,7 +25,7 @@ class GLobalHelper {
         return Request::segment(2);
     }
 
-    public static function checkImage($pathImage, $user = true)
+    public static function checkImage($pathImage, $type = "" , $user = true)
     {
         if (file_exists(public_path()."/".$pathImage) && !empty($pathImage))
         {
@@ -33,10 +33,19 @@ class GLobalHelper {
         }
         else
         {
-            if($user == true)
-              return asset("/images/noneimage.jpg");
-            else
-                return asset("/images/noneimage.jpg");
+            if($user == true) :
+              if($type == "article") : 
+                return asset("/images/default/article_not_found.jpg");
+              else :
+                return asset("/images/default/no_image.jpg");
+              endif;
+            else :
+                if($type == "article") : 
+                    return asset("/images/default/article_not_found.jpg");
+                else :
+                    return asset("/images/default/no_image.jpg");
+                endif;
+            endif;
         }
     }
 
@@ -55,6 +64,17 @@ class GLobalHelper {
 
     public static function formatDate($date, $format = 'd F Y \a\t H:i') {
         return (!is_null($date)) ? (new DateTime($date))->format($format) : "-";
+    }
+
+    public static function softTrim($text, $count, $wrapText='[...]'){
+
+        if(strlen($text)>$count){
+            preg_match('/^.{0,' . $count . '}(?:.*?)\b/siu', $text, $matches);
+            $text = $matches[0];
+        }else{
+            $wrapText = '';
+        }
+        return $text . $wrapText;
     }
 
     public static function encrypt($sData) {
