@@ -6,10 +6,10 @@
                 <div class="col-sm-4 col-centered text-center padding wow fadeIn" data-wow-duration="1000ms" data-wow-delay="300ms">
                     <div class="single-service">
                         <div class="wow scaleIn" data-wow-duration="500ms" data-wow-delay="300ms">
-                            <img src="{!! GLobalHelper::checkImage($value['image']) !!}" alt="">
+                            <img src="{!! GLobalHelper::checkImage('images/campaign/active_'.$value['image']) !!}" alt="">
                         </div>
-                        <h2>{!! $value['title'] !!}</h2>
-                        <p>{!! $value['detail'] !!}</p>
+                        <h2>{!! GLobalHelper::softTrim($value['title'],27)  !!}</h2>
+                        <p>{!! GLobalHelper::softTrim($value['detail'],76) !!}</p>
                     </div>
                 </div>
                 @endforeach

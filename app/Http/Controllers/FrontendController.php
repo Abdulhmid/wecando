@@ -33,10 +33,10 @@ class FrontendController extends Controller
     public function getIndex()
     {
         $data['partners']       = $this->partners->orderBy('id','desc')->limit(6)->get()->toArray();
-        $data['campaignStart']  = $this->campaign->where('status','0')
+        $data['campaignStart']  = $this->campaign->where('status','1')
                                        ->orderBy('id','desc')->limit(3)->get()
                                        ->toArray();
-        $data['campaignFinish'] = $this->campaign->where('status','1')
+        $data['campaignFinish'] = $this->campaign->where('status','0')
                                        ->orderBy('id','desc')->limit(3)->get()
                                        ->toArray();
         $data['title'] = $this->title;
@@ -57,6 +57,7 @@ class FrontendController extends Controller
 
     public function getCampaign()
     {
+        $data['campaign'] = $this->campaign;
         $data['title'] = $this->title;
         return view($this->folder . '.campaign', $data);
     }
@@ -90,15 +91,21 @@ class FrontendController extends Controller
     public function getCreateCampaign()
     {
         $data['title'] = $this->title;
+        $data['categoryCampaign'] = $this->campaignCat->all();
         return view($this->folder . '.create_campaign', $data);
     }
 
     /* Action Create Campaign */
 
     public function postStoreCampaign(Request $request){
-        $input = $request->except('_token');
+        $input = $request->except('_token','state');
 
-        // $this->campaign->create();
+        if( \Request::hasFile('image'))
+            $photo  = (new \ImageUploadCampaign($input))->upload();
+
+        $input['image'] = isset($photo) ? $photo : "";
+        $input['member_id'] = session('member_session')['id'];
+        $this->campaign->create($input);
         $redirect = "/";
         return redirect($redirect)->with('message','Campaign Baru Berhasil Ditambahkan!');
 
@@ -205,6 +212,19 @@ class FrontendController extends Controller
         return redirect('/go')
                ->with('message','Terima Kasih!');
     }
+
+    public function getTakeCity()
+    {
+        $state_id = \Request::input('province_id');
+        $emptyData = [];
+        if(empty($state_id)) return $emptyData;
+
+        $queryCity = Md\City::where('state_id','=',$state_id);
+
+        $sites = $queryCity->lists('name','city_id');
+        return $sites;
+    }
+
 
     protected function findUser($username)
     {

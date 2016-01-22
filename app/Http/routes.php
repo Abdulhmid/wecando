@@ -38,6 +38,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::controller('/partners', 'PartnersController');
         Route::controller('/back-newsletter', 'NewsletterController');
         Route::controller('/back-campaign', 'BackCampaignController');
+        Route::controller('/back-campaign-category', 'BackCampaignCategoryController');
         Route::controller('/configuration', 'ConfigurationController');
 
         /*

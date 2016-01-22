@@ -10,4 +10,8 @@ class ConfigurationHelper {
         return $data->first()->value;
     }
 
+    public static function takeState(){
+    	return \App\Models\States::all();
+    }
+
 }

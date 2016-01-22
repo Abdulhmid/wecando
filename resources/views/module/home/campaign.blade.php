@@ -11,8 +11,8 @@
                 <div class="row">
                     <div class="action">
                         <div class="col-sm-12">
-                            <h1 class="title">Blog</h1>
-                            <p>Timeline</p>
+                            <h1 class="title">LIST</h1>
+                            <p>Campaign</p>
                         </div>
                     </div>
                 </div>
@@ -24,130 +24,44 @@
     <section id="blog" class="padding-bottom">
         <div class="container">
             <div class="row">
-                <div class="timeline-blog overflow padding-top">
-                    <div class="timeline-date text-center">
-                        <a href="#" class="btn btn-common uppercase">November 2013</a>
-                    </div>
-                    <div class="timeline-divider overflow padding-bottom">
-                        <div class="col-sm-6 padding-right arrow-right wow fadeInLeft" data-wow-duration="1000ms" data-wow-delay="300ms">
+                {{--*/ $campaignData = $campaign->paginate(10); /*--}}
+                @if($campaign->count() > 0)
+                    @foreach($campaignData as $key => $value)
+                        <!-- class Arrow : arrow-right  -->
+                        <div class="col-md-6 wow fadeInLeft" data-wow-duration="1000ms" data-wow-delay="300ms">
                             <div class="single-blog timeline">
                                 <div class="single-blog-wrapper">
                                     <div class="post-thumb">
-                                        <img src="images/blog/timeline/1.jpg" class="img-responsive" alt="">
+                                        <img src="{!! GLobalHelper::checkImage('images/campaign/list_'.$value->image) !!}" class="img-responsive" alt="">
                                         <div class="post-overlay">
-                                           <span class="uppercase"><a href="#">14 <br><small>Feb</small></a></span>
+                                           <span class="uppercase"><a href="#">{!! GlobalHelper::formatDate($value->created_at,'d') !!} <br>
+                                           <small>{!! GlobalHelper::formatDate($value->created_at,'M') !!}</small></a></span>
                                        </div>
                                     </div>
                                 </div>
-                                <div class="post-content overflow">
-                                    <h2 class="post-title bold"><a href="blogdetails.html">Advanced business cards design</a></h2>
-                                    <h3 class="post-author"><a href="#">Posted by micron News</a></h3>
-                                    <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber [...]</p>
+                                <div class="post-content overflow" style="padding: 20px 20px 23px;">
+                                    <h2 class="post-title bold"><a href="blogdetails.html" style="font-size: 18px;">{!! GlobalHelper::softTrim($value->title,23) !!} </a><b>Donasi : {!! $value->donate !!}</b></h2>
+                                    <h3 class="post-author"><a href="#">Posted by {!! $value->created_by !!} </a></h3>
+                                    <p>{!! GlobalHelper::softTrim($value->detail,83) !!}</p>
                                     <a href="#" class="read-more">View More</a>
                                     <div class="post-bottom overflow">
-                                        <span class="post-date pull-left">February 11, 2014</span>
-                                        <span class="comments-number pull-right"><a href="#">3 comments</a></span>
+                                        <span class="post-date pull-left">{!! GlobalHelper::formatDate($value->created_at,'F d, Y') !!}</span>
+                                        <span class="comments-number pull-right"><a href="#" class="btn btn-danger" style="color: #FFFFFF;">Donasi</a></span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6 padding-left padding-top arrow-left wow fadeInRight" data-wow-duration="1000ms" data-wow-delay="300ms">
-                            <div class="single-blog timeline">
-                                <div class="single-blog-wrapper">
-                                    <div class="post-thumb">
-                                        <img src="images/blog/timeline/2.jpg" class="img-responsive" alt="">
-                                        <div class="post-overlay">
-                                           <span class="uppercase"><a href="#">14 <br><small>Feb</small></a></span>
-                                       </div>
-                                    </div>
-                                </div>
-                                <div class="post-content overflow">
-                                    <h2 class="post-title bold"><a href="blogdetails.html#">Advanced business cards design</a></h2>
-                                    <h3 class="post-author"><a href="#">Posted by micron News</a></h3>
-                                    <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber [...]</p>
-                                    <a href="#" class="read-more">View More</a>
-                                    <div class="post-bottom overflow">
-                                        <span class="post-date pull-left">February 11, 2014</span>
-                                        <span class="comments-number pull-right"><a href="#">3 comments</a></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 padding-right arrow-right wow fadeInLeft" data-wow-duration="1000ms" data-wow-delay="300ms">
-                            <div class="single-blog timeline">
-                                <div class="single-blog-wrapper">
-                                    <div class="post-thumb">
-                                        <iframe src="https://player.vimeo.com/video/95995577"></iframe>
-                                    </div>
-                                </div>
-                                <div class="post-content overflow">
-                                    <h2 class="post-title bold"><a href="blogdetails.html">Advanced business cards design</a></h2>
-                                    <h3 class="post-author"><a href="#">Posted by micron News</a></h3>
-                                    <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber [...]</p>
-                                    <a href="#" class="read-more">View More</a>
-                                    <div class="post-bottom overflow">
-                                        <span class="post-date pull-left">February 11, 2014</span>
-                                        <span class="comments-number pull-right"><a href="#">3 comments</a></span>
-                                    </div>
-                                </div>
-                            </div>
+                    @endforeach
+                @else
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <label>Campaign Belum Ada</label>
                         </div>
                     </div>
-                </div>
-                <div class="timeline-blog overflow">
-                    <div class="timeline-date text-center">
-                        <a href="" class="btn btn-common uppercase">Setember 2013</a>
-                    </div>
-                    <div class="timeline-divider overflow padding-bottom">
-                        <div class="col-sm-6 padding-right arrow-right wow fadeInLeft" data-wow-duration="1000ms" data-wow-delay="300ms">
-                            <div class="single-blog timeline">
-                                <div class="single-blog-wrapper">
-                                    <div class="post-thumb">
-                                        <img src="images/blog/timeline/3.jpg" class="img-responsive" alt="">
-                                        <div class="post-overlay">
-                                           <span class="uppercase"><a href="#">14 <br><small>Feb</small></a></span>
-                                       </div>
-                                    </div>
-                                </div>
-                                <div class="post-content overflow">
-                                    <h2 class="post-title bold"><a href="blogdetails.html">Advanced business cards design</a></h2>
-                                    <h3 class="post-author"><a href="#">Posted by micron News</a></h3>
-                                    <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber [...]</p>
-                                    <a href="#" class="read-more">View More</a>
-                                    <div class="post-bottom overflow">
-                                        <span class="post-date pull-left">February 11, 2014</span>
-                                        <span class="comments-number pull-right"><a href="#">3 comments</a></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 padding-left padding-top arrow-left wow fadeInRight" data-wow-duration="1000ms" data-wow-delay="300ms">
-                            <div class="single-blog timeline">
-                                <div class="single-blog-wrapper">
-                                    <div class="post-thumb">
-                                        <img src="images/blog/timeline/4.jpg" class="img-responsive" alt="">
-                                        <div class="post-overlay">
-                                           <span class="uppercase"><a href="#">14 <br><small>Feb</small></a></span>
-                                       </div>
-                                    </div>
-                                </div>
-                                <div class="post-content overflow">
-                                    <h2 class="post-title bold"><a href="blogdetails.html">Advanced business cards design</a></h2>
-                                    <h3 class="post-author"><a href="#">Posted by micron News</a></h3>
-                                    <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber [...]</p>
-                                    <a href="#" class="read-more">View More</a>
-                                    <div class="post-bottom overflow">
-                                        <span class="post-date pull-left">February 11, 2014</span>
-                                        <span class="comments-number pull-right"><a href="#">3 comments</a></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="timeline-date text-center">
-                        <a href="#" class="btn btn-common">See More</a>
-                    </div>
-                </div>
+                @endif
+            </div>
+            <div class="blog-pagination">
+                {!! $campaignData->render(); !!}
             </div>
         </div>
     </section>

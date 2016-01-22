@@ -67,6 +67,7 @@
             });
             //  jQuery('.nailthumb-container').nailthumb();
             $('.autohide').delay(5000).fadeOut('slow');
+            // Start of Tawk.to Script
             var Tawk_API=Tawk_API||{}, 
                 Tawk_LoadStart=new Date();
             (function(){
@@ -78,11 +79,7 @@
                 s0.parentNode.insertBefore(s1,s0);
             })();
         </script>
-        <!--Start of Tawk.to Script-->
-        <script type="text/javascript">
-
-        </script>
-        <!--End of Tawk.to Script-->
+        
         @yield('script')
 
     </body>

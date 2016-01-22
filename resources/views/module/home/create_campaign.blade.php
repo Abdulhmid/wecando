@@ -27,44 +27,55 @@
     <!--/#action-->
 
     <section id="blog" class="padding-top" style="padding-top:4px;">
-        <form id="actionForm"  action="{!! url('/store-campaign') !!}" method="post" enctype="multipart/form-data" novalidate>
+        <form id="actionForm"  action="{!! url('/store-campaign') !!}" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="username" class="control-label">Judul Campaign</label>
-                            <input class="form-control" name="title" type="text" value="" id="title">
+                            <label for="title" class="control-label">Judul Campaign</label>
+                            <input class="form-control" name="title" type="text" value="" id="title" required>
                         </div>
                         <div class="form-group">
-                            <label for="username" class="control-label">Kategori</label>
-                            <input class="form-control" name="username" type="text" value="" id="username">
+                            <label for="category_id" class="control-label">Kategori</label>
+                            <select class="form-control" name="category_id" id="category_id" required>
+                                <option value="">-- Pilih Kategori --</option>
+                                @foreach($categoryCampaign as $key => $value)
+                                    <option value="{!! $value->id !!}">{!! $value->name !!}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label for="username" class="control-label">Provinsi</label>
-                            <input class="form-control" name="username" type="text" value="" id="username">
+                            <label for="state" class="control-label">Provinsi</label>
+                            <select class="form-control" name="state" id="state" required>
+                                <option value="">-- Pilih Provinsi --</option>
+                                @foreach(ConfigurationHelper::takeState() as $key => $value)
+                                    <option value="{!! $value->state_id !!}">{!! $value->name !!}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label for="username" class="control-label">Kota</label>
-                            <input class="form-control" name="username" type="text" value="" id="username">
+                            <label for="location_id" class="control-label">Kota</label>
+                            <select class="form-control" name="location_id" id="location_id" required>
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label for="username" class="control-label">Target Donasi</label>
-                            <input class="form-control" name="username" type="text" value="" id="username">
+                            <label for="donate" class="control-label">Target Donasi</label>
+                            <input class="form-control" name="donate" type="text" value="" id="donate" required>
                         </div>
                         <div class="form-group">
-                            <label for="username" class="control-label">Target Waktu</label>
-                            <input class="form-control" name="username" type="text" value="" id="username">
+                            <label for="stop" class="control-label">Target Waktu</label>
+                            <input class="form-control" name="stop" type="text" value="" id="stop" required>
                         </div>
                         <div class="form-group">
-                            <label for="username" class="control-label">Video</label>
-                            <input class="form-control" name="video" type="text" value="" id="video">
+                            <label for="video" class="control-label">Video</label>
+                            <input class="form-control" name="video" type="url" value="" id="video" required>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="username" class="control-label">Detail Informasi</label>
-                            <textarea class="form-control" name="content" type="text" value="" id="content"></textarea>
+                            <label for="detail" class="control-label">Detail Informasi</label>
+                            <textarea class="form-control" name="detail" type="text" id="detail" required></textarea>
                         </div>
                         <div class="form-group">
                             <label for="image" class="control-label">Image</label>
@@ -101,7 +112,22 @@
     <script src="{!! url('plugins/summernote') !!}/summernote.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
-            $('#content').summernote();
+            $('#detail').summernote();
+            $("select#state").change(function(){
+                $.get("{!! url('take-city') !!}", {
+                    province_id: $("select#state").val()
+                },
+                function(data){
+                    console.log(data);
+                    $("select#location_id").empty();
+                    $.each(data, function(key, value) {
+                        $('select#location_id')
+                            .append($("<option></option>")
+                                .attr("value",key)
+                                .text(value));
+                    });
+                });
+            });
         });
         function readUrl(input) {
             if (input.files && input.files[0]) {
