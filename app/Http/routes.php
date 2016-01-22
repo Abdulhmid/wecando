@@ -43,7 +43,9 @@ Route::group(['middleware' => ['web']], function () {
         ** Front End Dashboard Route
         */
     });
+    
     Route::get('auth/facebook', 'Auth\AuthController@redirectToProvider');
+    Route::get('auth/facebook/callback', 'Auth\AuthController@handleProviderCallback');
     Route::controller('/','FrontendController');
 });
 

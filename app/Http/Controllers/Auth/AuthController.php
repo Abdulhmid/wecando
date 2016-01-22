@@ -76,4 +76,11 @@ class AuthController extends Controller
         return Socialite::driver('facebook')->redirect();
     }
 
+    public function handleProviderCallback()
+    {
+        $user = Socialite::driver('facebook')->user();
+
+        // $user->token;
+    }
+
 }
