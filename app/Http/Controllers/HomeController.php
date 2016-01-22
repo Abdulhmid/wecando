@@ -14,9 +14,13 @@ class HomeController extends Controller
     protected $folder = "module.dashboard";
     protected $form;
 
-    public function __construct(Md\Users $model)
+    public function __construct(
+        Md\Users $model,
+        Md\Campaign $campaign
+    )
     {
         $this->model = $model;
+        $this->campaign = $campaign;
         $this->middleware('auth');
     }
 
@@ -74,4 +78,26 @@ class HomeController extends Controller
         }
 
     }
+
+    /*
+    ** Summary
+    */
+
+    public function getCampaignActive($status = "")
+    {
+        $total = $this->campaign->where('status',0)->count();
+
+        if($status == "1") $total = $this->campaign->where('status',1)->count();
+         
+
+        return response()->json($total);
+    }
+
+    public function getCampaignAll()
+    {
+        $total = $this->campaign->count();
+
+        return response()->json($total);
+    }
+
 }

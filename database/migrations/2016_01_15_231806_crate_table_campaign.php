@@ -33,7 +33,7 @@ class CrateTableCampaign extends Migration
               $table->timestamp('stop');
 
               $table->text('detail')->nullable();
-              $table->tinyInteger('status')->default(0);
+              $table->tinyInteger('status')->default(1);
 
               $table->string('created_by')->default('system')->nullable();
               /* Action */
