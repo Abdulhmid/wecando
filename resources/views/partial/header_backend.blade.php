@@ -23,7 +23,11 @@
                 <!-- Messages: style can be found in dropdown.less-->
 
                 <!-- Notifications: style can be found in dropdown.less -->
-
+                <li class="user user-menu">
+                    <a href="{!! url('') !!}" target="_blank">
+                        <span class="hidden-xs">View Site</span>
+                    </a>
+                </li>
                 <!-- User Account: style can be found in dropdown.less -->
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">

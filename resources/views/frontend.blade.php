@@ -11,6 +11,7 @@
         <link href="{!! asset('additional/home/css/lightbox.css') !!}" rel="stylesheet"> 
         <link href="{!! asset('additional/home/css/main.css') !!}" rel="stylesheet">
         <link href="{!! asset('additional/home/css/responsive.css') !!}" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{!! url('css/pnotify.custom.min.css') !!}">
 
         <!--[if lt IE 9]>
             <script src="js/html5shiv.js"></script>
@@ -42,12 +43,30 @@
         <script type="text/javascript" src="{!! asset('additional/home/js/wow.min.js') !!}"></script>
         <script type="text/javascript" src="{!! asset('additional/home/js/main.js') !!}"></script>   
 
+        <script type="text/javascript" src="{!! url('js/custom_alert.js') !!}"></script>
+
+        <!-- Notif -->
+        <script type="text/javascript" src="{!! url('plugins/notifications/pnotify.min.js') !!}"></script>
+        <script type="text/javascript" src="{!! url('plugins/components_notifications_pnotify.js') !!}"></script>
+        <script type="text/javascript" src="{!! url('js/pnotify.custom.min.js') !!}"></script>
+
         <script type="text/javascript">
-                  //  jQuery('.nailthumb-container').nailthumb();
-                   $('.autohide').delay(5000).fadeOut('slow');
-        </script>
-        <!--Start of Tawk.to Script-->
-        <script type="text/javascript">
+            $(document).ready(function(){
+                @if(Session::has('error'))
+                    notif_error("{!! Session::get('error') !!}");
+                @endif
+                @if(Session::has('message'))
+                    notif_success("{!! Session::get('message') !!}");
+                @endif
+                @if(Session::has('info'))
+                    notif_info("{!! Session::get('info') !!}");
+                @endif
+                @if(Session::has('warning'))
+                    notif_warning("{!! Session::get('warning') !!}");
+                @endif
+            });
+            //  jQuery('.nailthumb-container').nailthumb();
+            $('.autohide').delay(5000).fadeOut('slow');
             var Tawk_API=Tawk_API||{}, 
                 Tawk_LoadStart=new Date();
             (function(){
@@ -58,6 +77,10 @@
                 s1.setAttribute('crossorigin','*');
                 s0.parentNode.insertBefore(s1,s0);
             })();
+        </script>
+        <!--Start of Tawk.to Script-->
+        <script type="text/javascript">
+
         </script>
         <!--End of Tawk.to Script-->
         @yield('script')

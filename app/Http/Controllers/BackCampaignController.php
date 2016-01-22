@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Additionals\Datatables\BackCampaignDatatable;
+use App\Models as Md;
 
 class BackCampaignController extends Controller
 {
@@ -16,8 +17,9 @@ class BackCampaignController extends Controller
     protected $folder = "module.back_campaign";
     protected $form;
 
-    public function __construct()
+    public function __construct(Md\Campaign $model)
     {
+        $this->model = $model;
     }
 
     public function getIndex()

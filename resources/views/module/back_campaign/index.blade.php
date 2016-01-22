@@ -16,8 +16,8 @@
 						<h3 class="box-title">Daftar {!! $title !!}</h3>
 					</div>
 					<div class="col-xs-6">
-						<div class="pull-right">
-							<a href="{!! url(GLobalHelper::indexUrl().'/create') !!}" data-original-title="Add" data-toggle="tooltip" class="btn btn-primary">
+						<div class="pull-right" style="display:none">
+							<a href="{!! url(GLobalHelper::indexUrl()) !!}" data-original-title="Add" data-toggle="tooltip" class="btn btn-primary">
 								<i class="fa fa-plus"></i> Tambah
 							</a>
 						</div>
@@ -30,12 +30,13 @@
 				@endif
 				<table id="datatable" class="table table-bordered table-hover">
 					<thead>
-						<tr>
+						<tr align="justify">
+							<th width="11%">Kategori</th>
 							<th width="11%">Nama Campaign</th>
 							<th width="2%">Donate</th>
 							<th width="2%">Target</th>
-							<th width="2%">Stop</th>
-							<th width="7%">Pembaruan Terakhir</th>
+							<th width="2%">Berakhir</th>
+							<th width="13%">Pembaruan Terakhir</th>
 							<th width="5%">Aksi</th>
 						</tr>
 					</thead>
@@ -82,8 +83,11 @@
 	            }
 	        },
 			"columns": [
-				{data: 'group_name', name: 'group_name'},
-				// {data: 'order', name: 'order'},
+				{data: 'category_id', name: 'category_id'},
+				{data: 'title', name: 'title'},
+				{data: 'donate', name: 'donate'},
+				{data: 'target', name: 'target'},
+				{data: 'stop', name: 'stop'},
 				{data: 'created_at', name: 'created_at', searchable : false},
 				{data: 'action', name: 'action', searchable : false}
 			], 

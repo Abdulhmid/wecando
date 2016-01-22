@@ -1,11 +1,11 @@
-<?php $segment = GLobalHelper::indexUrl(); ?>
+{{--*/ $segment = GLobalHelper::indexUrl(); /*--}}
 <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
 
         <ul class="sidebar-menu">
             <li class="header">Manajemen Data</li>
-            <li class="treeview {!! $segment == 'reports' ? 'active' : '' !!}">
+            <li class="treeview {!! $segment == 'groups' || $segment == 'users' ? 'active' : '' !!} ">
                 <?php $segmentReport = Request::segment(2); ?>
                 <a href="#">
                     <i class="fa fa-area-chart"></i>

@@ -93,6 +93,17 @@ class FrontendController extends Controller
         return view($this->folder . '.create_campaign', $data);
     }
 
+    /* Action Create Campaign */
+
+    public function postStoreCampaign(Request $request){
+        $input = $request->except('_token');
+
+        // $this->campaign->create();
+        $redirect = "/";
+        return redirect($redirect)->with('message','Campaign Baru Berhasil Ditambahkan!');
+
+    }
+
     public function getMeCampaign()
     {
         $data['title'] = $this->title;
