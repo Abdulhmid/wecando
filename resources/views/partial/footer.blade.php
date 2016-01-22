@@ -9,22 +9,22 @@
                 <h2>Media Social</h2>
                     <div class="row">
                         <div class="col-md-4">
-                            <a href="#"><img src="{!! asset('additional/home/images/home/profile2.png') !!}" alt=""></a>
+                            <a href="#"><img src="{!! asset('images/default/facebook81x81.png') !!}" alt=""></a>
                         </div>
                         <div class="col-md-4">
-                            <a href="#"><img src="{!! asset('additional/home/images/home/profile2.png') !!}" alt=""></a>
+                            <a href="#"><img src="{!! asset('images/default/1453527761_twitter.png') !!}" alt=""></a>
                         </div>
                         <div class="col-md-4" style="padding-bottom : 15px;">
-                            <a href="#"><img src="{!! asset('additional/home/images/home/profile2.png') !!}" alt=""></a>
+                            <a href="#"><img src="{!! asset('images/default/google-plus.png') !!}" alt=""></a>
                         </div><br/>
                         <div class="col-md-4">
-                            <a href="#"><img src="{!! asset('additional/home/images/home/profile1.png') !!}" alt=""></a>
+                            <a href="#"><img src="{!! asset('images/default/instagram.png') !!}" alt=""></a>
                         </div>
                         <div class="col-md-4">
-                            <a href="#"><img src="{!! asset('additional/home/images/home/profile1.png') !!}" alt=""></a>
+                            <a href="#"><img src="{!! asset('images/default/instagram.png') !!}" alt=""></a>
                         </div>
                         <div class="col-md-4">
-                            <a href="#"><img src="{!! asset('additional/home/images/home/profile1.png') !!}" alt=""></a>
+                            <a href="#"><img src="{!! asset('images/default/linkedin.png') !!}" alt=""></a>
                         </div>
                     </div>
                 </div>
