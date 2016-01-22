@@ -8,7 +8,7 @@
                     <a href="{!! url('create-campaign') !!}" class="btn btn-common">Bagaimana Caranya ?</a>
                 </div>
                 <!-- <img src="{!! asset('additional/home/images/home/slider/hill.png') !!}" class="slider-hill" alt="slider image"> -->
-                <img src="{!! asset('images/default/home.png') !!}" class="slider-hill" alt="slider image">
+                <img src="{!! asset('images/default/together.png') !!}" class="slider-hill" alt="slider image">
                 <!-- <img src="{!! asset('image/default/donation-1.png') !!}" class="slider-house" alt="slider image"> -->
                 <!-- <img src="{!! asset('image/default/donation-2.png') !!}" class="slider-sun" alt="slider image"> -->
                 <!-- <img src="{!! asset('image/default/donation-3.png') !!}" class="slider-birds2" alt="slider image"> -->
