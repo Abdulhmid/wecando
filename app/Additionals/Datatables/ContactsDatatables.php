@@ -32,6 +32,7 @@ class ContactsDatatables {
 				</a>
 				')
 			->editColumn('created_at','{!! GlobalHelper::formatDate($created_at) !!}')
+			->editColumn('message','{!! GlobalHelper::softTrim($message,73) !!}')
 			->removeColumn('id')
 			->make(true);
 	}
