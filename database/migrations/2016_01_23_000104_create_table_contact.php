@@ -26,6 +26,7 @@ class CreateTableContact extends Migration
               $table->string('email')->nullable();
               $table->text('message')->nullable();
               $table->text('reply')->nullable();
+              $table->enum('status', ['0','1'])->default('0');
 
               /* Action */
               $table->string('created_by')->default('system');

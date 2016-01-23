@@ -58,6 +58,12 @@
                     <span>Pembayaran</span>
                 </a>
             </li>
+            <li class="{!! $segment == 'back-contacts'  ? 'active' : '' !!}">
+                <a href="{!! url('/back-contacts') !!}">
+                    <i class="fa fa-bar-chart"></i>
+                    <span>Contact</span>
+                </a>
+            </li>
 
             <li class="header">Report</li>
             <li class="{!! $segment == 'users'  ? 'active' : '' !!}">

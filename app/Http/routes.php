@@ -40,6 +40,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::controller('/back-campaign', 'BackCampaignController');
         Route::controller('/back-campaign-category', 'BackCampaignCategoryController');
         Route::controller('/configuration', 'ConfigurationController');
+        Route::controller('/back-contacts', 'ContactsController');
 
         /*
         ** Front End Dashboard Route
