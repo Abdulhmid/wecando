@@ -226,6 +226,18 @@ class FrontendController extends Controller
     }
 
 
+    public function postSendContactUser(Request $request){
+        try {
+            $input = $request->only('name','email','message');
+            $this->contact->create($input);
+            
+            return "true";
+        } catch (Exception $e) {
+            return "false";
+        }
+    }
+
+
     protected function findUser($username)
     {
         return \App\Models\Users::select('*')->whereEmail($username)->orWhere('username',$username);

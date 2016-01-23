@@ -50,12 +50,13 @@
             <div class="col-md-4 col-sm-12">
                 <div class="contact-form bottom">
                     <h2>Send a message</h2>
-                    <form id="main-contact-form" name="contact-form" method="post" action="sendemail.php">
+                    <form id="form" name="contact-form" method="post" action="{!! url('/send-contact-user') !!}">
+                        <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                         <div class="form-group">
-                            <input type="text" name="name" class="form-control" required="required" placeholder="Name">
+                            <input type="text" name="name" id="name" class="form-control" required="required" placeholder="Name">
                         </div>
                         <div class="form-group">
-                            <input type="email" name="email" class="form-control" required="required" placeholder="Email Id">
+                            <input type="email" name="email" id="email" class="form-control" required="required" placeholder="Email Id">
                         </div>
                         <div class="form-group">
                             <textarea name="message" id="message" required="required" class="form-control" rows="8" placeholder="Your text here"></textarea>
