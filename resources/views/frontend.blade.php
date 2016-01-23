@@ -64,6 +64,31 @@
                 @if(Session::has('warning'))
                     notif_warning("{!! Session::get('warning') !!}");
                 @endif
+
+                /* Send Contact */
+                $("#form").submit(function(event) {
+                  /* stop form from submitting normally */
+                  event.preventDefault();
+                  /* get some values from elements on the page: */
+                  var $form = $( this ),
+                      url = $form.attr( 'action' );
+
+                  /* Send the data using post */
+                  var posting = $.post( url, {
+                      _token: $('#form > input[name="_token"]').val(),
+                      name : $('#name').val(),
+                      email  : $('#email').val(),
+                      message  : $('#message').val(),
+                  } );
+
+                  /* Alerts the results */
+                  posting.done(function( data ) {
+                    $('#form').trigger("reset");
+                    $(".full-alert").show();
+                  });
+                  return false;
+                });
+                
             });
             //  jQuery('.nailthumb-container').nailthumb();
             $('.autohide').delay(5000).fadeOut('slow');
@@ -78,6 +103,7 @@
                 s1.setAttribute('crossorigin','*');
                 s0.parentNode.insertBefore(s1,s0);
             })();
+
         </script>
         
         @yield('script')

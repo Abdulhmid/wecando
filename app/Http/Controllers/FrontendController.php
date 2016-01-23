@@ -19,7 +19,8 @@ class FrontendController extends Controller
                                 Md\Partners $partners,
                                 Md\Campaign $campaign,
                                 Md\campaignCategory $campaignCat,
-                                Md\Newsletter $newsletter
+                                Md\Newsletter $newsletter,
+                                Md\Contacts $contacts
                                )
     {
         $this->users = $users;
@@ -27,6 +28,7 @@ class FrontendController extends Controller
         $this->campaign = $campaign;
         $this->campaignCat = $campaignCat;
         $this->newsletter = $newsletter;
+        $this->contacts = $contacts;
         $this->middleware('authMember',['only' => 'getCreateCampaign']);
     }
 
@@ -229,7 +231,7 @@ class FrontendController extends Controller
     public function postSendContactUser(Request $request){
         try {
             $input = $request->only('name','email','message');
-            $this->contact->create($input);
+            $this->contacts->create($input);
             
             return "true";
         } catch (Exception $e) {

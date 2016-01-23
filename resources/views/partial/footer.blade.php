@@ -50,7 +50,7 @@
             <div class="col-md-4 col-sm-12">
                 <div class="contact-form bottom">
                     <h2>Send a message</h2>
-                    <form id="form" name="contact-form" method="post" action="{!! url('/send-contact-user') !!}">
+                    <form id="form" name="contact-form" action="{!! url('/send-contact-user') !!}">
                         <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                         <div class="form-group">
                             <input type="text" name="name" id="name" class="form-control" required="required" placeholder="Name">
@@ -62,7 +62,7 @@
                             <textarea name="message" id="message" required="required" class="form-control" rows="8" placeholder="Your text here"></textarea>
                         </div>                        
                         <div class="form-group">
-                            <input type="submit" name="submit" class="btn btn-submit" value="Submit">
+                            <button class="btn btn-submit">Kirim</button>
                         </div>
                     </form>
                 </div>
