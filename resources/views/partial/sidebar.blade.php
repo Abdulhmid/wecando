@@ -46,6 +46,30 @@
                     <span>Campaign</span>
                 </a>
             </li>
+
+            <li class="treeview {!! $segment == 'back-campaign' || $segment == 'back-campaign-category' ? 'active' : '' !!} ">
+                <?php $segmentReport = Request::segment(2); ?>
+                <a href="#">
+                    <i class="fa fa-area-chart"></i>
+                    <span>Campaign</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="{!! $segment == 'back-campaign' ? 'active' : '' !!}">
+                        <a href="{!! url('/back-campaign') !!}">
+                            <i class="fa fa-bar-chart"></i>
+                            <span>Category Campaign</span>
+                        </a>
+                    </li>
+                    <li class="{!! $segment == 'back-campaign-category'  ? 'active' : '' !!}">
+                        <a href="{!! url('/back-campaign-category') !!}">
+                            <i class="fa fa-bar-chart"></i>
+                            <span>Campaign</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
             <li class="{!! $segment == 'users'  ? 'active' : '' !!}">
                 <a href="{!! url('/users') !!}">
                     <i class="fa fa-bar-chart"></i>
