@@ -18,7 +18,7 @@
                             <a href="#"><img src="{!! asset('images/default/google-plus.png') !!}" alt=""></a>
                         </div><br/>
                         <div class="col-md-4">
-                            <a href="#"><img src="{!! asset('images/default/instagram.png') !!}" alt=""></a>
+                            <a href="#"><img src="{!! asset('images/default/path.png') !!}" alt=""></a>
                         </div>
                         <div class="col-md-4">
                             <a href="#"><img src="{!! asset('images/default/instagram.png') !!}" alt=""></a>
