@@ -20,7 +20,8 @@ class FrontendController extends Controller
                                 Md\Campaign $campaign,
                                 Md\campaignCategory $campaignCat,
                                 Md\Newsletter $newsletter,
-                                Md\Contacts $contacts
+                                Md\Contacts $contacts,
+                                Md\Donate $donate
                                )
     {
         $this->users = $users;
@@ -29,6 +30,7 @@ class FrontendController extends Controller
         $this->campaignCat = $campaignCat;
         $this->newsletter = $newsletter;
         $this->contacts = $contacts;
+        $this->donate = $donate;
         $this->middleware('authMember',['only' => 'getCreateCampaign']);
     }
 
@@ -69,6 +71,10 @@ class FrontendController extends Controller
         endif ;
     }
 
+    /*
+    ** Donation
+    */
+
     public function getDonate($id = "", $slug ="")
     {
         if($id == "" || $slug = "") return redirect()->back()->with('error','Something Wrong..!');
@@ -76,6 +82,21 @@ class FrontendController extends Controller
         $data['title'] = $this->title;
         $data['campaign'] = $this->campaign->with('category')->find($id);
         return view($this->folder . '.donate', $data);
+    }
+
+    public function postStoreDonate(Request $request, $id){
+        $input = $request->only('donation','transfer_method');
+
+        try {
+            $inputData['user_id'] = empty(session('member_session')['id']) ? session('member_session')['id'] : "";
+            $inputData['donate'] = $input['donation'];
+            $inputData['transfer_method'] = $input['transfer_method'];
+            $inputData['campaign_id'] = $id;
+            $this->donate->create($inputData);
+            return "1";   
+        } catch (Exception $e) {
+            return "0";   
+        }
     }
 
     public function getNewsletter()

@@ -33,13 +33,13 @@
 	<!--/#action-->
 
 	<section id="portfolio-information" class="padding-top" style="padding-top: 3px;">
-        <form id="form"  action="{!! url('/store-campaign') !!}" method="post" enctype="multipart/form-data">
+        <form id="form"  action="{!! url('/store-donate/'.$campaign->id) !!}" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
 	    <div class="container" style="">
 
 	        <ul id = "myTab" class = "nav nav-tabs">           
 	           <li class="active"><a href = "#donatur" data-toggle = "tab">Donasi</a></li>
-	           <li><a href = "#info" data-toggle = "tab">Fundraiser</a></li>
+	           <li><a href = "#info" id="infoSet" data-toggle = "tab">Fundraiser</a></li>
 	        </ul>
 
 	        <div id = "myTabContent" class = "tab-content">
@@ -48,19 +48,19 @@
 	              <div class="row">
 	              	<div class="col-md-12" style="">
 	              		<h3><b>Masukkan Nominal Donasi Anda</b></h3>
-						<input type="number" name="address" class="form-control" value="" style="border-color: rgba(218, 14, 14, 0.75);" placeholder="Masukkan Donasi Anda" required>
+						<input type="number" id="donateUser" class="form-control" style="border-color: rgba(218, 14, 14, 0.75);" placeholder="Masukkan Donasi Anda" required>
 	              	</div>
 	              	<div class="col-md-12" style="">
 	              		<h3><b>Metode Pembayaran </b></h3>
 	              		<div class="form-group">
 							<div class="">
-							  <label><input type="radio" name="optradio" value="bni" required> Bank BNI</label>
+							  <label><input type="radio" id="optionRadio" name="optradio" value="bni" required> Bank BNI</label>
 							</div>
 							<div class="">
-							  <label><input type="radio" name="optradio" value="bca"> Bank BCA</label>
+							  <label><input type="radio" id="optionRadio" name="optradio" value="bca"> Bank BCA</label>
 							</div>
 							<div class="">
-							  <label><input type="radio" name="optradio" value="bri"> Bank BRI</label>
+							  <label><input type="radio" id="optionRadio" name="optradio" value="bri"> Bank BRI</label>
 							</div>
 						</div>
 	              	</div>
@@ -113,21 +113,21 @@
               /* stop form from submitting normally */
               event.preventDefault();
               /* get some values from elements on the page: */
+
               var $form = $( this ),
                   url = $form.attr( 'action' );
 
               /* Send the data using post */
               var posting = $.post( url, {
                   _token: $('#form > input[name="_token"]').val(),
-                  name : $('#name').val(),
-                  email  : $('#email').val(),
-                  message  : $('#message').val(),
+                  donation : $('#donateUser').val(),
+                  transfer_method  : $('#optionRadio').val(),
               } );
 
               /* Alerts the results */
               posting.done(function( data ) {
-                $('#form').trigger("reset");
-                $(".full-alert").show();
+              	console.log(data);
+              	if (data == "1") {$('#infoSet').trigger('click');};
               });
               return false;
             });
