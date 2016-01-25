@@ -52,13 +52,13 @@
                     <li class="{!! $segment == 'back-campaign' ? 'active' : '' !!}">
                         <a href="{!! url('/back-campaign') !!}">
                             <i class="fa fa-bar-chart"></i>
-                            <span>Category Campaign</span>
+                            <span>Campaign</span>
                         </a>
                     </li>
                     <li class="{!! $segment == 'back-campaign-category'  ? 'active' : '' !!}">
                         <a href="{!! url('/back-campaign-category') !!}">
                             <i class="fa fa-bar-chart"></i>
-                            <span>Campaign</span>
+                            <span>Category Campaign</span>
                         </a>
                     </li>
                 </ul>
