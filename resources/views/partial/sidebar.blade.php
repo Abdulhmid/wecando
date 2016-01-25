@@ -40,12 +40,6 @@
                     <span>Newsletter</span>
                 </a>
             </li>
-            <li class="{!! $segment == 'back-campaign' ? 'active' : '' !!}">
-                <a href="{!! url('/back-campaign') !!}">
-                    <i class="fa fa-bar-chart"></i>
-                    <span>Campaign</span>
-                </a>
-            </li>
 
             <li class="treeview {!! $segment == 'back-campaign' || $segment == 'back-campaign-category' ? 'active' : '' !!} ">
                 <?php $segmentReport = Request::segment(2); ?>
