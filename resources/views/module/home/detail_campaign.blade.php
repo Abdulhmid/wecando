@@ -72,8 +72,9 @@
                                     <li><a href="#"><i class="fa fa-twitter"></i>Twitter</a></li>
                                 </ul>
                             </div>
+                            {{--*/ $paramDonate = '/donate/'.$campaignDetail->id.'/'.$campaignDetail->slug; /*--}}
                             <div class="live-preview">
-                                <a href="#" class="btn btn-common uppercase">Donasi</a>
+                                <a href="{!! url($paramDonate) !!}" class="btn btn-common uppercase">Donasi</a>
                             </div>
                         </div>
                     </div>

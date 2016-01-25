@@ -27,6 +27,7 @@
                 {{--*/ $campaignData = $campaign->paginate(10); /*--}}
                 @if($campaign->count() > 0)
                     @foreach($campaignData as $key => $value)
+                        {{--*/ $param = '/campaign/detail/'.$value->id.'/'.preg_replace('/\s+/', '', GlobalHelper::formatDate($value->created_at, 'd m Y')).'/'.$value->slug; /*--}}
                         <!-- class Arrow : arrow-right  -->
                         <div class="col-md-6 wow fadeInLeft" data-wow-duration="1000ms" data-wow-delay="300ms">
                             <div class="single-blog timeline">
@@ -34,19 +35,20 @@
                                     <div class="post-thumb">
                                         <img src="{!! GLobalHelper::checkImage('images/campaign/list_'.$value->image) !!}" class="img-responsive" alt="">
                                         <div class="post-overlay">
-                                           <span class="uppercase"><a href="#">{!! GlobalHelper::formatDate($value->created_at,'d') !!} <br>
+                                           <span class="uppercase"><a href="{!! url($param) !!}">{!! GlobalHelper::formatDate($value->created_at,'d') !!} <br>
                                            <small>{!! GlobalHelper::formatDate($value->created_at,'M') !!}</small></a></span>
                                        </div>
                                     </div>
                                 </div>
                                 <div class="post-content overflow" style="padding: 20px 20px 23px;">
-                                    <h2 class="post-title bold"><a href="blogdetails.html" style="font-size: 18px;">{!! GlobalHelper::softTrim($value->title,23) !!} </a><b>Donasi : {!! $value->donate !!}</b></h2>
+                                    <h2 class="post-title bold"><a href="{!! url($param) !!}" style="font-size: 18px;">{!! GlobalHelper::softTrim($value->title,23) !!} </a><b>Donasi : {!! $value->donate !!}</b></h2>
                                     <h3 class="post-author"><a href="#">Posted by {!! $value->created_by !!} </a></h3>
                                     <p>{!! GlobalHelper::softTrim($value->detail,83) !!}</p>
-                                    <a href="#" class="read-more">View More</a>
+                                    <a href="{!! url($param) !!}" class="read-more">View More</a>
                                     <div class="post-bottom overflow">
+                                        {{--*/ $paramDonate = '/donate/'.$value->id.'/'.$value->slug; /*--}}
                                         <span class="post-date pull-left">{!! GlobalHelper::formatDate($value->created_at,'F d, Y') !!}</span>
-                                        <span class="comments-number pull-right"><a href="#" class="btn btn-danger" style="color: #FFFFFF;">Donasi</a></span>
+                                        <span class="comments-number pull-right"><a href="{!! url($paramDonate) !!}" class="btn btn-danger" style="color: #FFFFFF;">Donasi</a></span>
                                     </div>
                                 </div>
                             </div>

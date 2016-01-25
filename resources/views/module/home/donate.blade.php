@@ -33,7 +33,7 @@
 	<!--/#action-->
 
 	<section id="portfolio-information" class="padding-top" style="padding-top: 3px;">
-        <form id="form"  action="{!! url('/store-donate/'.$campaign->id) !!}" method="post" enctype="multipart/form-data">
+        <form id="formAction"  action="{!! url('/store-donate/'.$campaign->id) !!}" method="post" enctype="">
             {{ csrf_field() }}
 	    <div class="container" style="">
 
@@ -109,7 +109,7 @@
 			** Action Form Send
 			*/
 
-            $("#form").submit(function(event) {
+            $("#formAction").submit(function(event) {
               /* stop form from submitting normally */
               event.preventDefault();
               /* get some values from elements on the page: */

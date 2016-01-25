@@ -85,12 +85,10 @@ class FrontendController extends Controller
     }
 
     public function postStoreDonate(Request $request, $id){
-        $input = $request->only('donation','transfer_method');
-
         try {
             $inputData['user_id'] = empty(session('member_session')['id']) ? session('member_session')['id'] : "";
-            $inputData['donate'] = $input['donation'];
-            $inputData['transfer_method'] = $input['transfer_method'];
+            $inputData['donate'] = $request->get('donation');
+            $inputData['transfer_method'] = $request->get('transfer_method');
             $inputData['campaign_id'] = $id;
             $this->donate->create($inputData);
             return "1";   
