@@ -49,16 +49,16 @@
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="{!! $segment == 'back-campaign' ? 'active' : '' !!}">
-                        <a href="{!! url('/back-campaign') !!}">
-                            <i class="fa fa-bar-chart"></i>
-                            <span>Campaign</span>
-                        </a>
-                    </li>
                     <li class="{!! $segment == 'back-campaign-category'  ? 'active' : '' !!}">
                         <a href="{!! url('/back-campaign-category') !!}">
                             <i class="fa fa-bar-chart"></i>
                             <span>Category Campaign</span>
+                        </a>
+                    </li>
+                    <li class="{!! $segment == 'back-campaign' ? 'active' : '' !!}">
+                        <a href="{!! url('/back-campaign') !!}">
+                            <i class="fa fa-bar-chart"></i>
+                            <span>Campaign</span>
                         </a>
                     </li>
                 </ul>
