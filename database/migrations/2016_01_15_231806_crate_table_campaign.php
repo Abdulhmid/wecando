@@ -23,6 +23,7 @@ class CrateTableCampaign extends Migration
 
               /** Main data  */
               $table->string('title')->nullable();
+              $table->text('slug')->nullable();
               $table->string('image')->nullable();
               $table->string('video')->nullable();
               $table->string('hastag')->nullable();

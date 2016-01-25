@@ -52,9 +52,11 @@ class BackCampaignCategoryController extends Controller
         $result = '';
 
         if($id == "" ) :
+            $input['slug'] = str_slug($input['name'],"-"); ;
             $query = $this->model->create($input);
             $result = $query->id;
         else :
+            $input['slug'] = str_slug($input['name'],"-"); ;
             $this->model->find($id)->update($input);
             $result = $id;
         endif;

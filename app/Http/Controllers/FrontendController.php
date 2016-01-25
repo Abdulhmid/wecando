@@ -57,16 +57,24 @@ class FrontendController extends Controller
         return view($this->folder . '.register', $data);
     }
 
-    public function getCampaign()
+    public function getCampaign($type = "", $id= "", $date = "" , $slug = "")
     {
-        $data['campaign'] = $this->campaign;
-        $data['title'] = $this->title;
-        return view($this->folder . '.campaign', $data);
+        if($type == "" || $id == "" || $date == "" || $slug == "") :
+                $data['campaign'] = $this->campaign;
+                $data['title'] = $this->title;
+                return view($this->folder . '.campaign', $data);
+            else :
+                $data['campaignDetail'] = $this->campaign->with('category')->find($id);
+                return view($this->folder . '.detail_campaign', $data);
+        endif ;
     }
 
-    public function getDonate()
+    public function getDonate($id = "", $slug ="")
     {
+        if($id == "" || $slug = "") return redirect()->back()->with('error','Something Wrong..!');
+
         $data['title'] = $this->title;
+        $data['campaign'] = $this->campaign->with('category')->find($id);
         return view($this->folder . '.donate', $data);
     }
 
@@ -105,6 +113,7 @@ class FrontendController extends Controller
         if( \Request::hasFile('image'))
             $photo  = (new \ImageUploadCampaign($input))->upload();
 
+        $input['slug'] = str_slug($input['title'],"-"); ;
         $input['image'] = isset($photo) ? $photo : "";
         $input['member_id'] = session('member_session')['id'];
         $this->campaign->create($input);

@@ -14,4 +14,12 @@ class ConfigurationHelper {
     	return \App\Models\States::all();
     }
 
+    /*
+	** User Data
+    */
+
+    public static function takeUserName($id){
+    	return \App\Models\Users::find($id)->fullname;
+    }
+
 }

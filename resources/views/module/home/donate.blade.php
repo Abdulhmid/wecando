@@ -1,7 +1,19 @@
 @extends('frontend')
 
 @section('style')
+	<link href="{!! asset('plugins/iCheck/all.css') !!} "rel="stylesheet" type="text/css"/>
+    <style type="text/css">
+        .nav-tabs > li, .nav-pills > li {
+            float:none;
+            display:inline-block;
+            *display:inline; /* ie7 fix */
+             zoom:1; /* hasLayout ie7 trigger */
+        }
 
+        .nav-tabs, .nav-pills {
+            text-align:center;
+        }
+    </style>
 @stop
 
 @section('content')
@@ -11,7 +23,7 @@
 	            <div class="row">
 	                <div class="action">
 	                    <div class="col-sm-12">
-	                        <h1 class="title">Masuk & Jadi Member</h1>
+	                        <h1 class="title">Donasi Untuk {!! $campaign->title !!}</h1>
 	                    </div>
 	                </div>
 	            </div>
@@ -21,33 +33,61 @@
 	<!--/#action-->
 
 	<section id="portfolio-information" class="padding-top" style="padding-top: 3px;">
-	    <div class="container">
-	        <div class="row">
-	            <div class="col-sm-6">
-                    <form id="main-contact-form" name="contact-form" method="post" action="sendemail.php">
-                        <div class="form-group">
-                            <input type="text" name="name" class="form-control" required="required" placeholder="Username / Email">
-                        </div>
-                        <div class="form-group">
-                            <input type="email" name="email" class="form-control" required="required" placeholder="Password">
-                        </div>             
-	                <div class="live-preview">
-	                    <input type="submit" name="submit" class="btn btn-common uppercase" value="Submit">
-	                </div>     
-                    </form>
-	            </div>
-	            <div class="col-sm-6">
-	                <div class="project-name overflow">
-	                    <h2 class="bold">Sailing Vivamus </h2>
-	                </div>
-	                <div class="project-info overflow">
-	                    <h3>Project Info</h3>
-	                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempus nibh sed elimttis adipiscing. Fusce in hendrerit purus. Suspendisse potenti. Proin quis eros odio, dapibus dictum mauris. Donec nisi libero, adipiscing id pretium eget, consectetur sit amet leo. Nam at eros quis mi egestas fringilla non nec purus.</p>
-	                </div>
+        <form id="form"  action="{!! url('/store-campaign') !!}" method="post" enctype="multipart/form-data">
+            {{ csrf_field() }}
+	    <div class="container" style="">
 
-	            </div>
+	        <ul id = "myTab" class = "nav nav-tabs">           
+	           <li class="active"><a href = "#donatur" data-toggle = "tab">Donasi</a></li>
+	           <li><a href = "#info" data-toggle = "tab">Fundraiser</a></li>
+	        </ul>
+
+	        <div id = "myTabContent" class = "tab-content">
+	           
+	           <div class = "tab-pane fade in active" id = "donatur">
+	              <div class="row">
+	              	<div class="col-md-12" style="">
+	              		<h3><b>Masukkan Nominal Donasi Anda</b></h3>
+						<input type="number" name="address" class="form-control" value="" style="border-color: rgba(218, 14, 14, 0.75);" placeholder="Masukkan Donasi Anda" required>
+	              	</div>
+	              	<div class="col-md-12" style="">
+	              		<h3><b>Metode Pembayaran </b></h3>
+	              		<div class="form-group">
+							<div class="">
+							  <label><input type="radio" name="optradio" value="bni" required> Bank BNI</label>
+							</div>
+							<div class="">
+							  <label><input type="radio" name="optradio" value="bca"> Bank BCA</label>
+							</div>
+							<div class="">
+							  <label><input type="radio" name="optradio" value="bri"> Bank BRI</label>
+							</div>
+						</div>
+	              	</div>
+	              	<div class="col-md-12"><hr/><br/>
+	              		<div class="form-group">
+	              			<button type="submit" class="btn btn-info">Lanjut</button>
+	              		</div>
+	              	</div>
+	              	<div class="col-md-12">
+						<div class="alert alert-success alert-dismissable">
+	                    	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+	                    	<h4>	<i class="icon fa fa-check"></i> Informasi !</h4>
+	                    	Lengkapi Isian Berikut untuk melakukan DONASI.
+	                 	</div>
+	              	</div>
+	              </div>
+	           </div>
+	           
+	           <div class = "tab-pane fade" id = "info">
+	              <p>jMeter is an Open Source testing software. It is 100% pure Java 
+	                 application for load and performance testing.</p>
+	           </div>
+	           
 	        </div>
+
 	    </div>
+	    </form>
 	</section>
 	 <!--/#portfolio-information-->
     <section id="related-work" class="padding-top padding-bottom">
@@ -57,5 +97,41 @@
 @stop
 
 @section('script')
+	<script type="text/javascript" src="{!! asset('plugins/iCheck/icheck.min.js') !!}"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('input[type="radio"]').iCheck({
+				checkboxClass: 'icheckbox_square-green',
+				radioClass: 'iradio_square-green'
+			});
 
+			/*
+			** Action Form Send
+			*/
+
+            $("#form").submit(function(event) {
+              /* stop form from submitting normally */
+              event.preventDefault();
+              /* get some values from elements on the page: */
+              var $form = $( this ),
+                  url = $form.attr( 'action' );
+
+              /* Send the data using post */
+              var posting = $.post( url, {
+                  _token: $('#form > input[name="_token"]').val(),
+                  name : $('#name').val(),
+                  email  : $('#email').val(),
+                  message  : $('#message').val(),
+              } );
+
+              /* Alerts the results */
+              posting.done(function( data ) {
+                $('#form').trigger("reset");
+                $(".full-alert").show();
+              });
+              return false;
+            });
+
+		});
+	</script>
 @stop

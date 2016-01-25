@@ -16,7 +16,7 @@ class Campaign extends Model {
 
     public function category()
     {
-        return $this->belongsTo(campaignCategory::class, 'id','category_id');
+        return $this->belongsTo(campaignCategory::class, 'category_id','id');
     }
 
 }

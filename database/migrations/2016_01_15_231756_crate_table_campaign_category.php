@@ -23,6 +23,7 @@ class CrateTableCampaignCategory extends Migration
 
               /** Main data  */
               $table->string('name');
+              $table->text('slug')->nullable();
               $table->text('description')->nullable();
               $table->string('created_by')->default('system')->nullable();
 
