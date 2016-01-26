@@ -8,7 +8,7 @@ class ImageUpload {
 	public $folder;
 	public $result;
 
-	public function __construct($request, $width = 400, $height = 400, $folder = "image")
+	public function __construct($request, $width = 400, $height = 400, $folder = "images")
 	{
 		$this->request = $request;
 		$this->width = $width;
