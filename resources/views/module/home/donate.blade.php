@@ -2,6 +2,7 @@
 
 @section('style')
 	<link href="{!! asset('plugins/iCheck/all.css') !!} "rel="stylesheet" type="text/css"/>
+	<link href="{!! asset('plugins/sweet-alert/sweet-alert.css') !!} "rel="stylesheet" type="text/css"/>
     <style type="text/css">
         .nav-tabs > li, .nav-pills > li {
             float:none;
@@ -86,6 +87,9 @@
 	              <p style="text-align:center">Jumlah Donasi Yang harus Dibayarkan.</p><hr/>
 	              <p style="text-align:center"><b><h3 style="text-align:center" class="pay">-</h3></b></p>
 	              <p style="text-align:center"><b><h3 style="text-align:center" class="method">-</h3></b></p><hr/>
+	              <p style="text-align:center"><b><h3 style="text-align:center" class="">
+	              	Silahkan Transfer Ke Bank <span class="method"></span> <br/> dengan No Rek : <u><i> 0889898988 </i></u> a.n <span class="an"> <u> <i>Budi Lanjar </i></u> </span>
+	              </h3></b></p><hr/>
 	              <div class="row">
 	              	<div class="col-md-12">
 	              		<a href="{!! url('/campaign') !!}" class="btn btn-default pull-left">Daftar Campaign</a>
@@ -108,6 +112,7 @@
 
 @section('script')
 	<script type="text/javascript" src="{!! asset('plugins/iCheck/icheck.min.js') !!}"></script>
+	<script src="{!! asset('plugins/sweet-alert/sweet-alert.js') !!} " type="text/javascript"></script> 
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$('input[type="radio"]').iCheck({
@@ -120,6 +125,13 @@
 			*/
 
             $("#formAction").submit(function(event) {
+			  var num = $('#donateUser').val();
+			  if(num%5000 != 0){
+			       sweetAlert("Oops...", "Donasi Harus Kelipatan 5000!", "error");
+			       return false;
+			  }
+			    
+
               /* stop form from submitting normally */
               event.preventDefault();
               /* get some values from elements on the page: */
@@ -141,7 +153,7 @@
               	$("ul.nav li").removeClass('active').addClass('disabledTab');
 
               	$(".pay").text(data['donate']);
-              	$(".transfer_method").text(data['donate']);
+              	$(".method").text(data['transfer_method']);
               	console.log(data);
               	if (data == "1") {$('#infoSet').trigger('click');};
               });

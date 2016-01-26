@@ -67,12 +67,6 @@
             <li class="{!! $segment == 'users'  ? 'active' : '' !!}">
                 <a href="{!! url('/users') !!}">
                     <i class="fa fa-bar-chart"></i>
-                    <span>Donasi</span>
-                </a>
-            </li>
-            <li class="{!! $segment == 'users'  ? 'active' : '' !!}">
-                <a href="{!! url('/users') !!}">
-                    <i class="fa fa-bar-chart"></i>
                     <span>Pembayaran</span>
                 </a>
             </li>
