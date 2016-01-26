@@ -12,6 +12,7 @@ class FrontendController extends Controller
     protected $title = "Dashboard";
     protected $url = "/";
     protected $folder = "module.home";
+    protected $folderMember = "module.member_admin";
     protected $form;
 
     public function __construct(    
@@ -151,6 +152,54 @@ class FrontendController extends Controller
         if($status <> "") $data['data'] = $this->campaign->whereStatus(1)->get();
 
         return view($this->folder . '.me_campaign', $data);
+    }
+
+    public function getMeProfile($status = "")
+    {
+        $data['title'] = $this->title;
+        $data['data'] = $this->campaign->get();
+        $data['row'] = $this->users->find(session('member_session')['id']);
+
+        return view($this->folderMember . '.profile', $data);
+    }
+
+    public function postStoreProfil($id, Request $request){
+
+        $input = $request->all();
+        $rules = array(
+            'fullname'=>'required',
+            'image'=>'',
+            'password' => 'min:6|confirmed',
+            'password_confirmation' => 'min:6'
+        );
+
+        if( \Request::hasFile('image'))
+            $photo  = (new \ImageUpload($input))->upload();
+
+
+        $validator = \Validator::make(\Request::all(), $rules);
+        if ($validator->passes()) {
+            $data = [
+                'fullname' => $input['fullname']
+            ];
+
+            if(!empty($input['password'])) {
+                $data = [
+                    'password' => bcrypt($input['password'])
+                ];
+            }
+
+            if(\Request::hasFile('image'))
+                $data = [
+                    'image' => isset($photo) ? $photo : ""
+                ];  $this->users->find($id)->update($data);
+
+            return redirect('/me-profile')->with('message','Sukses Ubah Data Profil!');
+
+        }else{
+            return redirect()->back()->withErrors($validator);
+        }
+
     }
 
     public function getMeDetailCampaign()

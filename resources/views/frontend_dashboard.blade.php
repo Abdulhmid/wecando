@@ -13,6 +13,7 @@
     <link href="{!! asset('additional/home/css/lightbox.css') !!}" rel="stylesheet"> 
     <link href="{!! asset('additional/home/css/main.css') !!}" rel="stylesheet">
     <link href="{!! asset('additional/home/css/responsive.css') !!}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{!! url('css/pnotify.custom.min.css') !!}">
 
 
     <!--[if lt IE 9]>
@@ -44,7 +45,7 @@
    </section>
     <!--/#page-breadcrumb-->
 
-    <section id="projects" class="padding-top">
+    <section id="projects" class="">
         <div class="container">
             <div class="row">
                 <div class="col-md-3 col-sm-4">
@@ -52,6 +53,7 @@
                         <div class="sidebar-item categories">
                             <h3>Menu</h3>
                             <ul class="nav navbar-stacked">
+                                <li class="{!! $segment == 'me-profile' & Request::segment(2) == '' ? 'active' : '' !!}"><a href="{!! url('me-profile') !!}">My Profile<span class="pull-right">(8)</span></a></li>
                                 <li class="{!! $segment == 'me-campaign' & Request::segment(2) == 'active' ? 'active' : '' !!}">
                                     <a href="{!! url('me-campaign/active') !!}">Campaign Active<span class="pull-right">(1)</span></a>
                                 </li>
@@ -81,9 +83,31 @@
     <script type="text/javascript" src="{!! asset('additional/home/js/lightbox.min.js') !!}"></script>
     <script type="text/javascript" src="{!! asset('additional/home/js/wow.min.js') !!}"></script>
     <script type="text/javascript" src="{!! asset('additional/home/js/main.js') !!}"></script>  
+
+    <script type="text/javascript" src="{!! url('js/custom_alert.js') !!}"></script>
+
+    <!-- Notif -->
+    <script type="text/javascript" src="{!! url('plugins/notifications/pnotify.min.js') !!}"></script>
+    <script type="text/javascript" src="{!! url('plugins/components_notifications_pnotify.js') !!}"></script>
+    <script type="text/javascript" src="{!! url('js/pnotify.custom.min.js') !!}"></script>
+
     <script type="text/javascript">
-              //  jQuery('.nailthumb-container').nailthumb();
-               $('.autohide').delay(5000).fadeOut('slow');
+            $(document).ready(function(){
+                @if(Session::has('error'))
+                    notif_error("{!! Session::get('error') !!}");
+                @endif
+                @if(Session::has('message'))
+                    notif_success("{!! Session::get('message') !!}");
+                @endif
+                @if(Session::has('info'))
+                    notif_info("{!! Session::get('info') !!}");
+                @endif
+                @if(Session::has('warning'))
+                    notif_warning("{!! Session::get('warning') !!}");
+                @endif
+            });
+            //  jQuery('.nailthumb-container').nailthumb();
+            $('.autohide').delay(5000).fadeOut('slow');
     </script>
      @yield('script')
 </body>
