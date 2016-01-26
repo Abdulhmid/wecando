@@ -60,8 +60,8 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="donate" class="control-label">Target Donasi</label>
-                            <input class="form-control" name="donate" type="text" value="" id="donate" required>
+                            <label for="target" class="control-label">Target Donasi</label>
+                            <input class="form-control" name="target" type="text" value="" id="target" required>
                         </div>
                         <div class="form-group">
                             <label for="stop" class="control-label">Target Waktu</label>

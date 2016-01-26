@@ -52,8 +52,10 @@
                         <div class="sidebar-item categories">
                             <h3>Menu</h3>
                             <ul class="nav navbar-stacked">
-                                <li class="{!! $segment == 'dashboard' ? 'active' : '' !!}"><a href="{!! url('dashboard') !!}">Dashboard<span class="pull-right">(1)</span></a></li>
-                                <li class="{!! $segment == 'me-campaign' ? 'active' : '' !!}"><a href="{!! url('me-campaign') !!}">My Campaign<span class="pull-right">(8)</span></a></li>
+                                <li class="{!! $segment == 'me-campaign' & Request::segment(2) == 'active' ? 'active' : '' !!}">
+                                    <a href="{!! url('me-campaign/active') !!}">Campaign Active<span class="pull-right">(1)</span></a>
+                                </li>
+                                <li class="{!! $segment == 'me-campaign' & Request::segment(2) == '' ? 'active' : '' !!}"><a href="{!! url('me-campaign') !!}">My Campaign<span class="pull-right">(8)</span></a></li>
                                 <li class="{!! $segment == 'create-campaign' ? 'active' : '' !!}"><a href="{!! url('create-campaign') !!}">Buat Campaign<span class="pull-right">(4)</span></a></li>
                             </ul>
                         </div>

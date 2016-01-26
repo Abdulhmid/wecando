@@ -33,7 +33,7 @@
                             <div class="single-blog timeline">
                                 <div class="single-blog-wrapper">
                                     <div class="post-thumb">
-                                        <img src="{!! GLobalHelper::checkImage('images/campaign/list_'.$value->image) !!}" class="img-responsive" alt="">
+                                        <img src="{!! GLobalHelper::checkImage('images/campaign/list_'.$value->image) !!}" class="img-responsive" style="width:555px;height:357px" alt="">
                                         <div class="post-overlay">
                                            <span class="uppercase"><a href="{!! url($param) !!}">{!! GlobalHelper::formatDate($value->created_at,'d') !!} <br>
                                            <small>{!! GlobalHelper::formatDate($value->created_at,'M') !!}</small></a></span>

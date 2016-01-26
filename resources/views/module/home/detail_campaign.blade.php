@@ -12,6 +12,70 @@
         .nav-tabs, .nav-pills {
             text-align:center;
         }
+        /* centered columns styles */
+        .row-centered {
+            text-align:center;
+        }
+        .col-centered {
+            display:inline-block;
+            float:none;
+            /* reset the text-align */
+            text-align:center;
+            /* inline-block space fix */
+            margin-right:-4px;
+        }
+        /*
+        ** Style List 
+        */
+
+        .list li {
+          background: url("http://bradfrost.github.com/this-is-responsive/patterns/images/icon_arrow_right.png") no-repeat 97% 50%;
+          border-bottom: 1px solid #ccc;
+          display: table;
+          border-collapse: collapse;
+          width: 100%;
+        }
+        .inner {
+          display: table-row;
+          overflow: hidden;
+        }
+        .li-img {
+          display: table-cell;
+          vertical-align: middle;
+          width: 30%;
+          padding-right: 1em;
+        }
+        .li-img img {
+          display: block;
+          width: 100%;
+          height: auto;
+        }
+        .li-text {
+          display: table-cell;
+          vertical-align: middle;
+          width: 70%;
+        }
+        .li-head {
+          margin: 0;
+        }
+        .li-sub {
+          margin: 0;
+        }
+
+        @media all and (min-width: 45em) {
+          .list li {
+            float: left;
+            width: 50%;
+          }
+        }
+
+        @media all and (min-width: 75em) {
+          .list li {
+            width: 33.33333%;
+          }
+        }
+
+
     </style>
 @stop
 
@@ -60,6 +124,13 @@
                                 <p>{!! GlobalHelper::softTrim($campaignDetail->detail,235) !!}</p>
                             </div>
                             <div class="client overflow">
+                                <h3>Status : <b> {!! $campaignDetail->status == "1" ? 'Masih Berlangsung' : 'Selesai' !!} </b> </h3>
+                            </div>
+                            <div class="client overflow">
+                                <h3>Target Donasi : <b> {{GlobalHelper::idrFormatRp($campaignDetail->target)}} </b> </h3>
+                                <h3>Donasi Terkumpul : <b> {{GlobalHelper::idrFormatRp(CampaignHelper::takeTotalDonate($campaignDetail->id))}} </b>  </h3>
+                            </div>
+                            <div class="client overflow">
                                 <h3>Client:</h3>
                                 <ul class="nav navbar-nav navbar-default">
                                     <li><a href="#"><i class="fa fa-bolt"></i>{!! ConfigurationHelper::takeUserName($campaignDetail->member_id) !!}</a></li>
@@ -74,7 +145,7 @@
                             </div>
                             {{--*/ $paramDonate = '/donate/'.$campaignDetail->id.'/'.$campaignDetail->slug; /*--}}
                             <div class="live-preview">
-                                <a href="{!! url($paramDonate) !!}" class="btn btn-common uppercase">Donasi</a>
+                                <a href="{!! url($paramDonate) !!}" class="btn btn-common uppercase"  {!! $campaignDetail->status == "1" ? '' : 'disabled' !!} >Donasi</a>
                             </div>
                         </div>
                     </div>
@@ -90,7 +161,7 @@
                            </li>
                            
                            <li><a href = "#donatur" data-toggle = "tab">Donatur</a></li>
-                           <li><a href = "#fundraiser" data-toggle = "tab">Fundraiser</a></li>
+                           <!-- <li><a href = "#fundraiser" data-toggle = "tab">Fundraiser</a></li> -->
                             
                         </ul>
 
@@ -101,16 +172,81 @@
                            </div>
                            
                            <div class = "tab-pane fade" id = "donatur">
-                              <p>iOS is a mobile operating system developed and distributed by 
-                                 Apple Inc. Originally released in 2007 for the iPhone, iPod Touch, and 
-                                 Apple TV. iOS is derived from OS X, with which it shares the Darwin 
-                                 foundation. iOS is Apple's mobile version of the OS X operating system 
-                                 used on Apple computers.</p>
+                              <div class="row " style="text-align:center">
+                                <div class="col-md-12 ">
+                                  <!-- Content -->
+
+                                    <!--Pattern HTML-->
+                                    <div id="pattern" class="pattern">
+                                      {{--*/ $campaignDonature = CampaignHelper::takeDonatur($campaignDetail->id); /*--}}
+                                      @if(count($campaignDonature))
+                                        <ul class="list img-list">
+                                          @foreach($campaignDonature as $key => $value)
+                                          <li>
+                                            <a href="#" class="inner">
+                                              <div class="li-img">
+                                                <img src="{!! GLobalHelper::checkImage($value->image) !!}" 
+                                                     alt="Image Alt Text" style="max-width:96px;max-height:96px" />
+                                              </div>
+                                              <div class="li-text">
+                                                <h4 class="li-head">{{$value->fullname}}</h4>
+                                                <p class="li-sub">{{ GlobalHelper::idrFormatRp($value->donateUsers) }}</p>
+                                              </div>
+                                            </a>
+                                          </li>
+                                          @endforeach
+                                        </ul>
+                                        
+                                      @else
+                                        <label style="text-align:center">Belum Ada Donature</label>
+                                      @endif
+                                    </div>
+                                    <!--End Pattern HTML-->
+
+                                  <!-- Content -->
+                                </div>
+                              </div>
                            </div>
                            
                            <div class = "tab-pane fade" id = "fundraiser">
-                              <p>jMeter is an Open Source testing software. It is 100% pure Java 
-                                 application for load and performance testing.</p>
+
+                              <div class="row " style="text-align:center">
+                                <div class="col-md-12 ">
+                                  <!-- Content -->
+
+                                    <!--Pattern HTML-->
+                                    <div id="pattern" class="pattern">
+                                      <ul class="list img-list">
+                                        <li>
+                                          <a href="#" class="inner">
+                                            <div class="li-img">
+                                              <img src="http://bradfrost.github.com/this-is-responsive/patterns/images/fpo_square.png" alt="Image Alt Text" />
+                                            </div>
+                                            <div class="li-text">
+                                              <h4 class="li-head">Title of Content</h4>
+                                              <p class="li-sub">Summary of content</p>
+                                            </div>
+                                          </a>
+                                        </li>
+                                        <li>
+                                          <a href="#" class="inner">
+                                            <div class="li-img">
+                                              <img src="http://bradfrost.github.com/this-is-responsive/patterns/images/fpo_square.png" alt="Image Alt Text" />
+                                            </div>
+                                            <div class="li-text">
+                                              <h4 class="li-head">Title of More Content</h4>
+                                              <p class="li-sub">Summary of more content</p>
+                                            </div>
+                                          </a>
+                                        </li>
+                                      </ul>
+                                    </div>
+                                    <!--End Pattern HTML-->
+
+                                  <!-- Content -->
+                                </div>
+                              </div>
+
                            </div>
                            
                         </div>

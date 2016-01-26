@@ -77,6 +77,8 @@ class FrontendController extends Controller
 
     public function getDonate($id = "", $slug ="")
     {
+        if(empty(session('member_session'))) return redirect('go')->with('error','Silahkan Login Terlebih Dahulu');
+
         if($id == "" || $slug = "") return redirect()->back()->with('error','Something Wrong..!');
 
         $data['title'] = $this->title;
@@ -85,13 +87,15 @@ class FrontendController extends Controller
     }
 
     public function postStoreDonate(Request $request, $id){
+        if(empty(session('member_session'))) return redirect('go')->with('error','Silahkan Login Terlebih Dahulu');
+
         try {
-            $inputData['user_id'] = empty(session('member_session')['id']) ? session('member_session')['id'] : "";
+            $inputData['user_id'] = !empty(session('member_session')['id']) ? session('member_session')['id'] : "";
             $inputData['donate'] = $request->get('donation');
             $inputData['transfer_method'] = $request->get('transfer_method');
             $inputData['campaign_id'] = $id;
-            $this->donate->create($inputData);
-            return "1";   
+            $data = $this->donate->create($inputData);
+            return $data;   
         } catch (Exception $e) {
             return "0";   
         }
@@ -140,9 +144,12 @@ class FrontendController extends Controller
 
     }
 
-    public function getMeCampaign()
+    public function getMeCampaign($status = "")
     {
         $data['title'] = $this->title;
+        $data['data'] = $this->campaign->get();
+        if($status <> "") $data['data'] = $this->campaign->whereStatus(1)->get();
+
         return view($this->folder . '.me_campaign', $data);
     }
 

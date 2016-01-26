@@ -66,6 +66,12 @@ class GLobalHelper {
         return (!is_null($date)) ? (new DateTime($date))->format($format) : "-";
     }
 
+    public static function idrFormatRp($number, $prefix = 0, $rp = true)
+    {
+        $symbol = ($rp == true) ? "Rp " : "";
+        return !is_null($number) ? $symbol . number_format($number, $prefix, ",", ".") : "-";
+    }
+
     public static function softTrim($text, $count, $wrapText='[...]'){
 
         if(strlen($text)>$count){

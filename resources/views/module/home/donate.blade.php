@@ -13,6 +13,9 @@
         .nav-tabs, .nav-pills {
             text-align:center;
         }
+		.disabledTab {
+		    pointer-events: none;
+		}
     </style>
 @stop
 
@@ -38,7 +41,7 @@
 	    <div class="container" style="">
 
 	        <ul id = "myTab" class = "nav nav-tabs">           
-	           <li class="active"><a href = "#donatur" data-toggle = "tab">Donasi</a></li>
+	           <li class="active" id="donationTab"><a href = "#donatur" data-toggle = "tab">Donasi</a></li>
 	           <li><a href = "#info" id="infoSet" data-toggle = "tab">Fundraiser</a></li>
 	        </ul>
 
@@ -80,8 +83,15 @@
 	           </div>
 	           
 	           <div class = "tab-pane fade" id = "info">
-	              <p>jMeter is an Open Source testing software. It is 100% pure Java 
-	                 application for load and performance testing.</p>
+	              <p style="text-align:center">Jumlah Donasi Yang harus Dibayarkan.</p><hr/>
+	              <p style="text-align:center"><b><h3 style="text-align:center" class="pay">-</h3></b></p>
+	              <p style="text-align:center"><b><h3 style="text-align:center" class="method">-</h3></b></p><hr/>
+	              <div class="row">
+	              	<div class="col-md-12">
+	              		<a href="{!! url('/campaign') !!}" class="btn btn-default pull-left">Daftar Campaign</a>
+	              		<a href="{!! url('/') !!}" class="btn btn-default pull-right">Halaman Index</a>
+	              	</div>
+	              </div>
 	           </div>
 	           
 	        </div>
@@ -126,6 +136,12 @@
 
               /* Alerts the results */
               posting.done(function( data ) {
+              	$('#infoSet').trigger('click')
+              	
+              	$("ul.nav li").removeClass('active').addClass('disabledTab');
+
+              	$(".pay").text(data['donate']);
+              	$(".transfer_method").text(data['donate']);
               	console.log(data);
               	if (data == "1") {$('#infoSet').trigger('click');};
               });
