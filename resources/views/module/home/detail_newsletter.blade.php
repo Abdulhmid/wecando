@@ -20,125 +20,106 @@
     </section>
     <!--/#page-breadcrumb-->
 
-    <section id="blog-details" class="padding-top">
+    <section id="blog-details" class="">
         <div class="container">
             <div class="row">
-                <div class="col-md-9 col-sm-7">
-                    <div class="row">
-                         <div class="col-md-12 col-sm-12">
-                            <div class="single-blog blog-details two-column">
-                                <div class="post-thumb">
-                                    <a href="#"><img src="images/blog/7.jpg" class="img-responsive" alt=""></a>
-                                    <div class="post-overlay">
-                                        <span class="uppercase"><a href="#">14 <br><small>Feb</small></a></span>
+                @if(count($newsletterDetail))
+                    <!-- Start Content -->
+                    <div class="col-md-9 col-sm-7">
+                        <div class="row">
+                             <div class="col-md-12 col-sm-12">
+                                <div class="single-blog blog-details two-column">
+                                    <div class="post-thumb">
+                                        <a href="#">
+                                        <img src="{!! GlobalHelper::checkImage($newsletterDetail->image, 'article' ) !!}" class="img-responsive" style="width:850px;height:400px" alt=""></a>
+                                        <div class="post-overlay">
+                                            <span class="uppercase"><a href="#">{!! GlobalHelper::formatDate($newsletterDetail->created_at,'d') !!} <br>
+                                            <small>{!! GlobalHelper::formatDate($newsletterDetail->created_at,'M') !!}</small></a></span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="post-content overflow">
-                                    <h2 class="post-title bold"><a href="#">Advanced business cards design</a></h2>
-                                    <h3 class="post-author"><a href="#">Posted by micron News</a></h3>
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. <br> <br>
-
-                                    There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. </p>
-                                    <div class="post-bottom overflow">
-                                        <ul class="nav navbar-nav post-nav">
-                                            <li><a href="#"><i class="fa fa-comments"></i>3 Comments</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="blog-share">
-                                        <span class='st_facebook_hcount'></span>
-                                        <span class='st_twitter_hcount'></span>
-                                        <span class='st_linkedin_hcount'></span>
-                                        <span class='st_pinterest_hcount'></span>
-                                        <span class='st_email_hcount'></span>
-                                    </div>
-                                    <div class="response-area">
-                                    <h2 class="bold">Comments</h2>
-                                    <ul class="media-list">
-                                        <li class="media">
-                                            <div class="post-comment">
-                                                <a class="pull-left" href="#">
-                                                    <img class="media-object" src="images/blogdetails/2.png" alt="">
-                                                </a>
-                                                <div class="media-body">
-                                                    <span><i class="fa fa-user"></i>Posted by <a href="#">Endure</a></span>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliq Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.</p>
-                                                    <ul class="nav navbar-nav post-nav">
-                                                        <li><a href="#"><i class="fa fa-clock-o"></i>February 11,2014</a></li>
-                                                        <li><a href="#"><i class="fa fa-reply"></i>Reply</a></li>
+                                    <div class="post-content overflow">
+                                        <h2 class="post-title bold"><a href="#">{!! $newsletterDetail->title !!}</a></h2>
+                                        <h3 class="post-author"><a href="#">Posted by {!! $newsletterDetail->created_by !!}</a></h3>
+                                        <p>{!! $newsletterDetail->content !!}</p>
+                                        <div class="post-bottom overflow">
+                                            <ul class="nav navbar-nav post-nav">
+                                                <li><a href="#"><i class="fa fa-comments"></i>3 Comments</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="blog-share">
+                                            <span class='st_facebook_hcount'></span>
+                                            <span class='st_twitter_hcount'></span>
+                                            <span class='st_linkedin_hcount'></span>
+                                            <span class='st_pinterest_hcount'></span>
+                                            <span class='st_email_hcount'></span>
+                                        </div>
+                                        <div class="response-area">
+                                        <h2 class="bold">Comments</h2>
+                                        <ul class="media-list">
+                                            <li class="media">
+                                                <div class="post-comment">
+                                                    <a class="pull-left" href="#">
+                                                        <img class="media-object" src="images/blogdetails/2.png" alt="">
+                                                    </a>
+                                                    <div class="media-body">
+                                                        <span><i class="fa fa-user"></i>Posted by <a href="#">Endure</a></span>
+                                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliq Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.</p>
+                                                        <ul class="nav navbar-nav post-nav">
+                                                            <li><a href="#"><i class="fa fa-clock-o"></i>February 11,2014</a></li>
+                                                            <li><a href="#"><i class="fa fa-reply"></i>Reply</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="parrent">
+                                                    <ul class="media-list">
+                                                        <li class="post-comment reply">
+                                                            <a class="pull-left" href="#">
+                                                                <img class="media-object" src="images/blogdetails/3.png" alt="">
+                                                            </a>
+                                                            <div class="media-body">
+                                                                <span><i class="fa fa-user"></i>Posted by <a href="#">Endure</a></span>
+                                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut </p>
+                                                                <ul class="nav navbar-nav post-nav">
+                                                                    <li><a href="#"><i class="fa fa-clock-o"></i>February 11,2014</a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </li>
                                                     </ul>
                                                 </div>
-                                            </div>
-                                            <div class="parrent">
-                                                <ul class="media-list">
-                                                    <li class="post-comment reply">
-                                                        <a class="pull-left" href="#">
-                                                            <img class="media-object" src="images/blogdetails/3.png" alt="">
-                                                        </a>
-                                                        <div class="media-body">
-                                                            <span><i class="fa fa-user"></i>Posted by <a href="#">Endure</a></span>
-                                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut </p>
-                                                            <ul class="nav navbar-nav post-nav">
-                                                                <li><a href="#"><i class="fa fa-clock-o"></i>February 11,2014</a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                        <li class="media">
-                                            <div class="post-comment">
-                                                <a class="pull-left" href="#">
-                                                    <img class="media-object" src="images/blogdetails/4.png" alt="">
-                                                </a>
-                                                <div class="media-body">
-                                                    <span><i class="fa fa-user"></i>Posted by <a href="#">Endure</a></span>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliq Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.</p>
-                                                    <ul class="nav navbar-nav post-nav">
-                                                        <li><a href="#"><i class="fa fa-clock-o"></i>February 11,2014</a></li>
-                                                        <li><a href="#"><i class="fa fa-reply"></i>Reply</a></li>
-                                                    </ul>
+                                            </li>
+                                            <li class="media">
+                                                <div class="post-comment">
+                                                    <a class="pull-left" href="#">
+                                                        <img class="media-object" src="images/blogdetails/4.png" alt="">
+                                                    </a>
+                                                    <div class="media-body">
+                                                        <span><i class="fa fa-user"></i>Posted by <a href="#">Endure</a></span>
+                                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliq Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.</p>
+                                                        <ul class="nav navbar-nav post-nav">
+                                                            <li><a href="#"><i class="fa fa-clock-o"></i>February 11,2014</a></li>
+                                                            <li><a href="#"><i class="fa fa-reply"></i>Reply</a></li>
+                                                        </ul>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </li>
-                                        
-                                    </ul>                   
-                                </div><!--/Response-area-->
+                                            </li>
+                                            
+                                        </ul>                   
+                                    </div><!--/Response-area-->
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                 </div>
+                     </div>
+                     <!-- End Content -->        
+                @else
+                    <div class="col-md-12" style="text-align:center"></div>
+                @endif
+
                 <div class="col-md-3 col-sm-5">
                     <div class="sidebar blog-sidebar">
                         <div class="sidebar-item  recent">
                             <h3>Artikel Lain</h3>
-                            <div class="media">
-                                <div class="pull-left">
-                                    <a href="#"><img src="images/portfolio/project1.jpg" alt=""></a>
-                                </div>
-                                <div class="media-body">
-                                    <h4><a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit,</a></h4>
-                                    <p>posted on  07 March 2014</p>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <div class="pull-left">
-                                    <a href="#"><img src="images/portfolio/project2.jpg" alt=""></a>
-                                </div>
-                                <div class="media-body">
-                                    <h4><a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit,</a></h4>
-                                    <p>posted on  07 March 2014</p>
-                                </div>
-                            </div>
-                            <div class="media">
-                                <div class="pull-left">
-                                    <a href="#"><img src="images/portfolio/project3.jpg" alt=""></a>
-                                </div>
-                                <div class="media-body">
-                                    <h4><a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit,</a></h4>
-                                    <p>posted on  07 March 2014</p>
-                                </div>
-                            </div>
+                            {!! NewsletterHelper::otherNewsletter($newsletterDetail->id) !!}
                         </div>
                     </div>
                 </div>

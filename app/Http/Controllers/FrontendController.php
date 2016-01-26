@@ -97,18 +97,17 @@ class FrontendController extends Controller
         }
     }
 
-    public function getNewsletter()
+    public function getNewsletter($type = "", $id= "", $date = "" , $slug = "")
     {
-        $data['title'] = $this->title;
-        $data['newsletter'] = $this->newsletter;
+        if($type == "" || $id == "" || $date == "" || $slug == "") :
+                $data['title'] = $this->title;
+                $data['newsletter'] = $this->newsletter;
 
-        return view($this->folder . '.newsletter', $data);
-    }
-
-    public function getDetailNewsletter()
-    {
-        $data['title'] = $this->title;
-        return view($this->folder . '.detail_newsletter', $data);
+                return view($this->folder . '.newsletter', $data);
+            else :
+                $data['newsletterDetail'] = $this->newsletter->find($id);
+                return view($this->folder . '.detail_newsletter', $data);
+        endif ;
     }
 
     public function getHow()

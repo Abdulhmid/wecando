@@ -55,12 +55,15 @@ class NewsletterController extends Controller
             $photo  = (new \ImageUpload($input,480,270))->upload();
 
         if($id == "" ) :
+            $input['slug'] = str_slug($input['title'],"-"); ;
         	$input['image'] = isset($photo) ? $photo : "" ;
             $query = $this->model->create($input);
             $result = $query->id;
         else :
             if(\Request::hasFile('image'))
                 $input['image'] = isset($photo) ? $photo : "";
+            
+            $input['slug'] = str_slug($input['title'],"-"); ;
             $this->model->find($id)->update($input);
             $result = $id;
         endif;

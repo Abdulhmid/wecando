@@ -29,20 +29,21 @@
                     <div class="row">
                         @if($newsletter->count() > 0)
                             @foreach($newsletterData as $key => $value)
+                                {{--*/ $param = 'newsletter/detail/'.$value->id.'/'.preg_replace('/\s+/', '', GlobalHelper::formatDate($value->created_at, 'd m Y')).'/'.$value->slug; /*--}}
                                 <div class="col-md-4 col-sm-12 blog-padding-right">
                                     <div class="single-blog two-column">
                                         <div class="post-thumb">
-                                            <a href="{!! url('detail-newsletter') !!}"><img src="{!! GlobalHelper::checkImage($value->image, 'article' ) !!}" class="img-responsive" alt=""></a>
+                                            <a href="{!! url($param) !!}"><img src="{!! GlobalHelper::checkImage($value->image, 'article' ) !!}" class="img-responsive" alt=""></a>
                                             <div class="post-overlay">
                                                 <span class="uppercase"><a href="#">14 <br><small style="font-size: 13px;margin-left: 1px;">
                                                 Feb 2015</small></a></span>
                                             </div>
                                         </div>
                                         <div class="post-content overflow">
-                                            <h3 class="post-title bold"><a href="{!! url('detail-newsletter') !!}">{!! $value->title !!}</a></h3>
-                                            <h4 class="post-author"><a href="#">Posted by {!! $value->created_by !!}</a></h4>
+                                            <h3 class="post-title bold"><a href="{!! url($param) !!}">{!! $value->title !!}</a></h3>
+                                            <h4 class="post-author"><a href="{!! url($param) !!}">Posted by {!! $value->created_by !!}</a></h4>
                                             <p>{!! GlobalHelper::softTrim($value->content,83) !!}</p>
-                                            <a href="{!! url('detail-newsletter') !!}" class="read-more">View More</a>
+                                            <a href="{!! url($param) !!}" class="read-more">View More</a>
                                             <div class="post-bottom overflow" style="display:none">
                                                 <ul class="nav nav-justified post-nav">
                                                     <li><a href="#"><i class="fa fa-tag"></i>Creative</a></li>
