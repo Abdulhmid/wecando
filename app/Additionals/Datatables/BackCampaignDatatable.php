@@ -16,13 +16,16 @@ class BackCampaignDatatable {
 	{
 		$this->data = $this
 			->model
-			->scopeTakeData();
+			->scopeTakeData()->with('category');
 
 	}
 
 	public function make()
 	{
 		return \Datatables::of($this->data)
+            ->editColumn('category_id', function($row){
+                return !is_null($row->category) ? $row->category->name : '-';
+            })
 			->addColumn('action','
 				<a href="{!! url(GLobalHelper::indexUrl().\'/edit/\'.$id) !!}" class="btn btn-flat btn-default btn-sm" data-toggle="tooltip" data-original-title="Edit">
 					<i class="fa fa-pencil"></i> Ubah
