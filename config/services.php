@@ -42,9 +42,9 @@ return [
     ],
 
     'facebook' => [
-        'client_id' => 'your-github-app-id',
-        'client_secret' => 'your-github-app-secret',
-        'redirect' => 'http://your-callback-url',
+        'client_id' => '698762596842949',
+        'client_secret' => 'c96cc155193f6797c173a068b8c05107',
+        'redirect' => 'http://wecandoit.net/reg',
     ],
 
 ];

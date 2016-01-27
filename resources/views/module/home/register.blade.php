@@ -37,7 +37,7 @@
 	        <div class="row">
 	            <div class="col-sm-6">
 					<div class="form-group">
-	            		<button type="button" class="btn btn-lg btn-primary"><i class="fa fa-facebook"></i> Mendaftar Melalui Facebook </button>
+	            		<a href="{!! ('auth/facebook') !!}" class="btn btn-lg btn-primary"><i class="fa fa-facebook"></i> Mendaftar Melalui Facebook </a>
                     </div>
                         <div class="form-group">
                             <input type="text" name="email" class="form-control" required="required" placeholder="Email" value="{!! old('email') !!}">
