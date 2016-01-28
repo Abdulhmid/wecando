@@ -4,6 +4,7 @@
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet">
     <!-- <link href="{!! url('plugins/summernote') !!}/font-awesome.css" rel="stylesheet"> -->
     <link href="{!! url('plugins/summernote') !!}/summernote.css" rel="stylesheet">
+    <link href="{!! asset('plugins/datepicker/datepicker3.css') !!} "rel="stylesheet" type="text/css"/> 
 @stop
 
 @section('content')
@@ -109,9 +110,21 @@
 
 @section('script')
     <!-- Editor Script -->
+    <script type="text/javascript" src="{!! asset('plugins/datepicker/bootstrap-datepicker.js') !!}"></script>
     <script src="{!! url('plugins/summernote') !!}/summernote.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
+            $('#stop').datepicker({
+                format: 'yyyy-mm-d',
+                autoclose : true,
+                startDate: '+0d'
+                // endDate: '+0d'
+            });
+
+            $("#target").keyup(function(e){
+                $(this).val(format($(this).val()));
+            });
+
             $('#detail').summernote();
             $("select#state").change(function(){
                 $.get("{!! url('take-city') !!}", {
@@ -145,5 +158,25 @@
         {
             $('#file').click();
         }
+
+        var format = function(num){
+            var str = num.toString().replace("$", ""), parts = false, output = [], i = 1, formatted = null;
+            if(str.indexOf(".") > 0) {
+                parts = str.split(".");
+                str = parts[0];
+            }
+            str = str.split("").reverse();
+            for(var j = 0, len = str.length; j < len; j++) {
+                if(str[j] != ",") {
+                    output.push(str[j]);
+                    if(i%3 == 0 && j < (len - 1)) {
+                        output.push(",");
+                    }
+                    i++;
+                }
+            }
+            formatted = output.reverse().join("");
+            return(formatted + ((parts) ? "." + parts[1].substr(0, 2) : ""));
+        };
     </script>
 @stop

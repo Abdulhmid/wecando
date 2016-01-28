@@ -127,6 +127,9 @@
                                 <h3>Status : <b> {!! $campaignDetail->status == "1" ? 'Masih Berlangsung' : 'Selesai' !!} </b> </h3>
                             </div>
                             <div class="client overflow">
+                                <h3>Tanggal Berakhir : <b> {{GlobalHelper::formatDate($campaignDetail->stop,'d F Y')}} </b> </h3>
+                            </div>
+                            <div class="client overflow">
                                 <h3>Target Donasi : <b> {{GlobalHelper::idrFormatRp($campaignDetail->target)}} </b> </h3>
                                 <h3>Donasi Terkumpul : <b> {{GlobalHelper::idrFormatRp(CampaignHelper::takeTotalDonate($campaignDetail->id))}} </b>  </h3>
                             </div>

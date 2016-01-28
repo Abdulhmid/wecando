@@ -139,6 +139,7 @@ class FrontendController extends Controller
             $photo  = (new \ImageUploadCampaign($input))->upload();
 
         $input['slug'] = str_slug($input['title'],"-"); ;
+        $input['target'] = str_replace(",", "", $input['target']); 
         $input['image'] = isset($photo) ? $photo : "";
         $input['member_id'] = session('member_session')['id'];
         $this->campaign->create($input);
