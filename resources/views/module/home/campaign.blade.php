@@ -41,7 +41,7 @@
                                     </div>
                                 </div>
                                 <div class="post-content overflow" style="padding: 20px 20px 23px;">
-                                    <h2 class="post-title bold"><a href="{!! url($param) !!}" style="font-size: 18px;">{!! GlobalHelper::softTrim($value->title,23) !!} </a><b>Donasi : {!! $value->donate !!}</b></h2>
+                                    <h2 class="post-title bold"><a href="{!! url($param) !!}" style="font-size: 18px;">{!! GlobalHelper::softTrim($value->title,23) !!} </a><b>Donasi : {!! GlobalHelper::idrFormat(CampaignHelper::takeTotalDonateVerify($value->id)) !!}</b></h2>
                                     <h3 class="post-author"><a href="#">Posted by {!! $value->created_by !!} </a></h3>
                                     <p>{!! GlobalHelper::softTrim($value->detail,83) !!}</p>
                                     <a href="{!! url($param) !!}" class="read-more">View More</a>

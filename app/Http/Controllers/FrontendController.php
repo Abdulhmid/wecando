@@ -91,10 +91,12 @@ class FrontendController extends Controller
         if(empty(session('member_session'))) return redirect('go')->with('error','Silahkan Login Terlebih Dahulu');
 
         try {
+            $keyDonate = mt_rand( 100, 999 );
             $inputData['user_id'] = !empty(session('member_session')['id']) ? session('member_session')['id'] : "";
-            $inputData['donate'] = $request->get('donation');
+            $inputData['donate'] = $request->get('donation')+$keyDonate;
             $inputData['transfer_method'] = $request->get('transfer_method');
             $inputData['campaign_id'] = $id;
+            $inputData['key_donate'] = $keyDonate;
             $data = $this->donate->create($inputData);
             return $data;   
         } catch (Exception $e) {

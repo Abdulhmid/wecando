@@ -51,8 +51,8 @@
 	           <div class = "tab-pane fade in active" id = "donatur">
 	              <div class="row">
 	              	<div class="col-md-12" style="">
-	              		<h3><b>Masukkan Nominal Donasi Anda</b></h3>
-						<input type="number" id="donateUser" class="form-control" style="border-color: rgba(218, 14, 14, 0.75);" placeholder="Masukkan Donasi Anda" required>
+	              		<h3><b>Masukkan Nominal Donasi Anda </b><label style="font-size:12px;"> <i>Donasi Harus Kelipatan 5000</i> </label></h3>
+						<input type="text" id="donateUser" class="form-control" style="border-color: rgba(218, 14, 14, 0.75);" placeholder="Masukkan Donasi Anda" required>
 	              	</div>
 	              	<div class="col-md-12" style="">
 	              		<h3><b>Metode Pembayaran </b></h3>
@@ -114,18 +114,26 @@
 	<script type="text/javascript" src="{!! asset('plugins/iCheck/icheck.min.js') !!}"></script>
 	<script src="{!! asset('plugins/sweet-alert/sweet-alert.js') !!} " type="text/javascript"></script> 
 	<script type="text/javascript">
+		$(function(){
+		    $("#donateUser").keyup(function(e){
+		        $(this).val(format($(this).val()));
+		    });
+		});
+
 		$(document).ready(function(){
 			$('input[type="radio"]').iCheck({
 				checkboxClass: 'icheckbox_square-green',
 				radioClass: 'iradio_square-green'
 			});
 
+
+
 			/*
 			** Action Form Send
 			*/
 
             $("#formAction").submit(function(event) {
-			  var num = $('#donateUser').val();
+			  var num = $('#donateUser').val().replace(',', '');
 			  if(num%5000 != 0){
 			       sweetAlert("Oops...", "Donasi Harus Kelipatan 5000!", "error");
 			       return false;
@@ -142,7 +150,7 @@
               /* Send the data using post */
               var posting = $.post( url, {
                   _token: $('#form > input[name="_token"]').val(),
-                  donation : $('#donateUser').val(),
+                  donation : $('#donateUser').val().replace(',', ''),
                   transfer_method  : $('#optionRadio').val(),
               } );
 
@@ -152,7 +160,7 @@
               	
               	$("ul.nav li").removeClass('active').addClass('disabledTab');
 
-              	$(".pay").text(data['donate']);
+              	$(".pay").text(addCommas(data['donate']));
               	$(".method").text(data['transfer_method']);
               	console.log(data);
               	if (data == "1") {$('#infoSet').trigger('click');};
@@ -161,5 +169,38 @@
             });
 
 		});
+
+	    function addCommas(nStr)
+	    {
+	        nStr += '';
+	        x = nStr.split('.');
+	        x1 = x[0];
+	        x2 = x.length > 1 ? '.' + x[1] : '';
+	        var rgx = /(\d+)(\d{3})/;
+	        while (rgx.test(x1)) {
+	            x1 = x1.replace(rgx, '$1' + ',' + '$2');
+	        }
+	        return x1 + x2;
+	    }
+
+		var format = function(num){
+			var str = num.toString().replace("$", ""), parts = false, output = [], i = 1, formatted = null;
+			if(str.indexOf(".") > 0) {
+				parts = str.split(".");
+				str = parts[0];
+			}
+			str = str.split("").reverse();
+			for(var j = 0, len = str.length; j < len; j++) {
+				if(str[j] != ",") {
+					output.push(str[j]);
+					if(i%3 == 0 && j < (len - 1)) {
+						output.push(",");
+					}
+					i++;
+				}
+			}
+			formatted = output.reverse().join("");
+			return(formatted + ((parts) ? "." + parts[1].substr(0, 2) : ""));
+		};
 	</script>
 @stop

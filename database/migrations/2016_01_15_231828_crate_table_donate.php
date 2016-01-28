@@ -25,6 +25,8 @@ class CrateTableDonate extends Migration
               $table->integer('user_id')->nullable();
               $table->decimal('donate',19,2)->default(0);
               $table->string('transfer_method')->nullable();
+              $table->integer('key_donate')->nullable();
+              $table->enum('status', ['0','1'])->default('0');
               $table->string('created_by')->default('system')->nullable();
 
               /* Foreign Key */
