@@ -10,9 +10,17 @@
              <div class="container">
                 <div class="row">
                     <div class="action">
-                        <div class="col-sm-12">
+                        <div class="col-sm-6 pull-left">
                             <h1 class="title">LIST</h1>
                             <p>Campaign</p>
+                        </div>
+                        <div class="col-sm-6 pull-right">
+                            {{--*/ $categoryData = App\Models\campaignCategory::all(); /*--}}
+                            <select class="form-control" style="margin-top: 12px;">
+                                <option value="">-- Pilih Kategori Campaign --</option>
+                                @foreach($categoryData as $key => $value)
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                 </div>

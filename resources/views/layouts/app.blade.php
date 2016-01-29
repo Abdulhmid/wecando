@@ -13,11 +13,19 @@
 
     <!-- Styles -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{!! asset('css/AdminLTE/AdminLTE.min.css') !!}" rel="stylesheet" type="text/css" />
+    <link href="{!! asset('css/additional.css') !!}" rel="stylesheet" type="text/css" />
+    <link href="{!! asset('css/new_ui.css') !!}" rel="stylesheet" type="text/css" />
+            
+    <!-- AdminLTE Skins. Choose a skin from the css/skins 
+    folder instead of downloading all of them to reduce the load. -->
+    <link href="{!! asset('css/AdminLTE/skins/_all-skins.min.css') !!}" rel="stylesheet" type="text/css" />
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
 
     <style>
         body {
             font-family: 'Lato';
+            background-color: rgba(3, 179, 138, 0.8);
         }
 
         .fa-btn {
@@ -26,7 +34,7 @@
     </style>
 </head>
 <body id="app-layout">
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-default" style="background-color: rgba(1, 23, 27, 0.61);border-radius: 0px;border-color:#14594E;">
         <div class="container">
             <div class="navbar-header">
 
@@ -39,23 +47,23 @@
                 </button>
 
                 <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    Laravel
+                <a class="navbar-brand" style="color: rgb(255, 235, 235);" href="{{ url('/') }}">
+                    We Can Do
                 </a>
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/home') }}">Home</a></li>
+                    <!-- <li><a href="{{ url('/home') }}">Home</a></li> -->
                 </ul>
 
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
                     @if (Auth::guest())
-                        <li><a href="{{ url('/login') }}">Login</a></li>
-                        <li><a href="{{ url('/register') }}">Register</a></li>
+                        <li><a href="{{ url('/login') }}" style="color: rgb(255, 235, 235);">Login</a></li>
+                        <!-- <li><a href="{{ url('/register') }}">Register</a></li> -->
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">

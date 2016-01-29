@@ -68,9 +68,17 @@ class FrontendController extends Controller
                 $data['campaign'] = $this->campaign;
                 $data['title'] = $this->title;
                 return view($this->folder . '.campaign', $data);
-            else :
+            elseif($type == 'kategori') :
+                $data['campaign'] = $this->campaign->where(['category_id' => $id]);
+                $data['title'] = $this->title;
+                return view($this->folder . '.campaign', $data);
+            elseif($type == 'detail') :
                 $data['campaignDetail'] = $this->campaign->with('category')->find($id);
                 return view($this->folder . '.detail_campaign', $data);
+            else :
+                $data['campaign'] = $this->campaign;
+                $data['title'] = $this->title;
+                return view($this->folder . '.campaign', $data);     
         endif ;
     }
 
