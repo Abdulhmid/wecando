@@ -37,6 +37,7 @@ Route::group(['middleware' => ['web']], function () {
         Route::controller('/groups', 'GroupsController');
         Route::controller('/partners', 'PartnersController');
         Route::controller('/back-newsletter', 'NewsletterController');
+        Route::controller('/back-comment-newsletter', 'NewsletterCommentarController');
         Route::controller('/back-campaign', 'BackCampaignController');
         Route::controller('/back-campaign-category', 'BackCampaignCategoryController');
         Route::controller('/configuration', 'ConfigurationController');

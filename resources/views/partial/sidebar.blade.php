@@ -34,11 +34,27 @@
                     <span>Partners</span>
                 </a>
             </li>
-            <li class="{!! $segment == 'back-newsletter'  ? 'active' : '' !!}">
-                <a href="{!! url('/back-newsletter') !!}">
-                    <i class="fa fa-bar-chart"></i>
+            <li class="treeview {!! $segment == 'back-newsletter' || $segment == 'back-comment-campaign' ? 'active' : '' !!} ">
+                <?php $segmentReport = Request::segment(2); ?>
+                <a href="#">
+                    <i class="fa fa-area-chart"></i>
                     <span>Newsletter</span>
+                    <i class="fa fa-angle-left pull-right"></i>
                 </a>
+                <ul class="treeview-menu">
+                    <li class="{!! $segment == 'back-newsletter'  ? 'active' : '' !!}">
+                        <a href="{!! url('/back-newsletter') !!}">
+                            <i class="fa fa-bar-chart"></i>
+                            <span>Newsletter</span>
+                        </a>
+                    </li>
+                    <li class="{!! $segment == 'back-comment-campaign' ? 'active' : '' !!}">
+                        <a href="{!! url('/back-comment-newsletter') !!}">
+                            <i class="fa fa-bar-chart"></i>
+                            <span>Komentar</span>
+                        </a>
+                    </li>
+                </ul>
             </li>
 
             <li class="treeview {!! $segment == 'back-campaign' || $segment == 'back-campaign-category' ? 'active' : '' !!} ">

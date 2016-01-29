@@ -42,9 +42,9 @@ return [
     ],
 
     'facebook' => [
-        'client_id' => '698762596842949',
-        'client_secret' => 'c96cc155193f6797c173a068b8c05107',
-        'redirect' => 'http://wecandoit.net/reg',
+        'client_id' => '734057543360607',
+        'client_secret' => '17bb13567e67ed2898415361b49f27f5',
+        'redirect' => 'http://fundraising.duckdns.org/',
     ],
 
 ];

@@ -16,9 +16,11 @@
                         </div>
                         <div class="col-sm-6 pull-right">
                             {{--*/ $categoryData = App\Models\campaignCategory::all(); /*--}}
-                            <select class="form-control" style="margin-top: 12px;">
+                            <select class="form-control" style="margin-top: 12px;" id="idCat">
                                 <option value="">-- Pilih Kategori Campaign --</option>
                                 @foreach($categoryData as $key => $value)
+                                    {{--*/ $optionFilter = $value->id.'/'.preg_replace('/\s+/', '', GlobalHelper::formatDate($value->created_at, 'd m Y')).'/'.$value->slug; /*--}}
+                                    <option class="{!! $optionFilter !!}"  value="{!! $value->id !!}">{!! $value->name !!}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -84,5 +86,13 @@
 @stop
 
 @section('script')
-
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $("#idCat").on('click', function(){
+            var optionFilter = $(this).find('option:selected').attr('class');
+            var url = "{!! url('campaign/kategori') !!}"+"/"+optionFilter;    
+            $(location).attr('href',url);
+        });
+    });
+    </script>
 @stop
