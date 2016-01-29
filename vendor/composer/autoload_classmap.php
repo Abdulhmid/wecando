@@ -28,6 +28,7 @@ return array(
     'CrateTablePartners' => $baseDir . '/database/migrations/2016_01_15_231755_crate_table_partners.php',
     'CrateTableState' => $baseDir . '/database/migrations/2016_01_14_100002_crate_table_state.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
+    'CreateTableCommentNewsletter' => $baseDir . '/database/migrations/2016_01_29_023125_create_table_comment_newsletter.php',
     'CreateTableContact' => $baseDir . '/database/migrations/2016_01_23_000104_create_table_contact.php',
     'CreateTableGroups' => $baseDir . '/database/migrations/2016_01_14_174841_create_table_groups.php',
     'CreateTableSetting' => $baseDir . '/database/migrations/2016_01_18_134834_create_table_setting.php',
