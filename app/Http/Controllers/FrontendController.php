@@ -16,19 +16,21 @@ class FrontendController extends Controller
     protected $form;
 
     public function __construct(    
-                                Md\Users $users,
-                                Md\Partners $partners,
-                                Md\Campaign $campaign,
-                                Md\campaignCategory $campaignCat,
-                                Md\Newsletter $newsletter,
-                                Md\Contacts $contacts,
-                                Md\Donate $donate
-                               )
+        Md\Users $users,
+        Md\Partners $partners,
+        Md\Campaign $campaign,
+        Md\campaignCategory $campaignCat,
+        Md\Newsletter $newsletter,
+        Md\Contacts $contacts,
+        Md\Donate $donate,
+        Md\commentNewsletter $commentNewsletter
+    )
     {
         $this->users = $users;
         $this->partners = $partners;
         $this->campaign = $campaign;
         $this->campaignCat = $campaignCat;
+        $this->commentNewsletter = $commentNewsletter;
         $this->newsletter = $newsletter;
         $this->contacts = $contacts;
         $this->donate = $donate;
@@ -115,6 +117,16 @@ class FrontendController extends Controller
                 $data['newsletterDetail'] = $this->newsletter->find($id);
                 return view($this->folder . '.detail_newsletter', $data);
         endif ;
+    }
+
+    public function postNewsletterComment(Request $request, $id = ""){
+        $input = $request->except('_token');
+        try {
+            $input['newsletter_id'] = $id;
+            $this->commentNewsletter->create($input);            
+        } catch (Exception $e) {
+            return "0";
+        }
     }
 
     public function getHow()

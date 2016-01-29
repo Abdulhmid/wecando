@@ -24,6 +24,7 @@ class CreateTableCommentNewsletter extends Migration
                 /** Main data  */
                 $table->text('comment')->nullable();
                 $table->string('created_by')->default('anonim');
+                $table->tinyInteger('status')->default(0);
 
                 /* Action */
                 $table->timestamps();
